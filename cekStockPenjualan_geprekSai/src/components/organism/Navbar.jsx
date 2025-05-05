@@ -28,7 +28,7 @@ const Navbar = () => {
                 </h3>
             </div>
 
-            <div className="lg:flex hidden list-none text-xl justify-between w-1/2 border-2 border-black text-white font-bold">
+            <div className="lg:flex hidden list-none text-xl justify-between w-1/2  text-white font-bold">
                 <li>
                     <Link className="hover:text-yellow-300">Kasir</Link>
                 </li>
