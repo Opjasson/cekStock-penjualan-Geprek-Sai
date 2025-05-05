@@ -1,7 +1,7 @@
 import React from "react";
 import Kasir_Layout from "../components/mainLayout/Kasir_Layout";
 import { MdOutlineDataset } from "react-icons/md";
-
+import { FaShoppingCart } from "react-icons/fa";
 
 const Home = () => {
     return (
@@ -14,7 +14,10 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="border w-[34%]">
-                    <h1>Keranjang</h1>
+                    <div>
+                        <FaShoppingCart className="text-3xl" />
+                        <h1>Keranjang</h1>
+                    </div>
                 </div>
             </div>
         </Kasir_Layout>
