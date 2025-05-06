@@ -11,13 +11,13 @@ const keranjang = [
         id: 1,
         nama: "ayam bakar",
         image: menu1,
-        idr: 15.0,
+        idr: 15000,
     },
     {
         id: 2,
         nama: "ayam chicken",
         image: menu1,
-        idr: 25.0,
+        idr: 25000,
     },
 ];
 
@@ -26,6 +26,8 @@ const Home = () => {
     const [findLower, setfindLower] = useState("");
     const [qty, setQty] = useState(0);
     const [cart, setCart] = useState([]);
+    const [totalPrice, setTotalPrice] = useState();
+    const [cash, setCash] = useState()
 
     const navigate = useNavigate();
 
@@ -51,7 +53,23 @@ const Home = () => {
         const keranjang = cart.filter((item) => item.id !== id);
         setCart(keranjang);
     };
-    console.log(cart);
+
+    useEffect(() => {
+        if (cart.length > 0) {
+            const sum = cart.reduce((acc, item) => {
+                const product = keranjang.find(
+                    (productItem) => productItem.id === item.id
+                );
+                return acc + product.idr * item.qty;
+            }, 0);
+            setTotalPrice(sum);
+        }else{
+            setTotalPrice(0)
+        }
+    }, [cart])
+    
+    
+    
 
     return (
         <Kasir_Layout>
@@ -155,21 +173,21 @@ const Home = () => {
                                     Total Bayar
                                 </label>
                                 <p>:</p>
-                                <input type="number" className="border" />
+                                <input type="number" className="border" value={totalPrice} />
                             </div>
                             <div className="border flex gap-1.5">
                                 <label htmlFor="" className="border pr-[46px]">
                                     Cash
                                 </label>
                                 <p>:</p>
-                                <input type="number" className="border" />
+                                <input type="number" className="border" onChange={(e) => setCash(e.target.value)} />
                             </div>
                             <div className="border flex gap-1.5">
-                                <label htmlFor="" className="border pr-[22px]">
-                                    Kembali
+                                <label htmlFor="" className="border pr-[5px]">
+                                    Kembalian
                                 </label>
                                 <p>:</p>
-                                <input type="number" className="border" />
+                                <input type="number" className="border" value={cash - totalPrice}/>
                             </div>
                         </div>
 
