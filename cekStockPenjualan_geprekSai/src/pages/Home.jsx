@@ -9,6 +9,23 @@ import { logoSai, menu1 } from "../assets";
 const Home = () => {
     const [data, setData] = useState([]);
     const [findLower, setfindLower] = useState("");
+    const [cart, setCart] = useState([
+        {
+            no: 1,
+            nama: "Ayam chicken",
+            harga: 30000,
+        },
+        {
+            no: 2,
+            nama: "Pop ice",
+            harga: 20000,
+        },
+        {
+            no: 3,
+            nama: "Kentang",
+            harga: 25000,
+        },
+    ]);
 
     const navigate = useNavigate();
     return (
@@ -164,22 +181,23 @@ const Home = () => {
                                 x
                             </h2>
                         </div>
-                        <div
-                            onClick={() => navigate(`Detail-stock/${item.id}`)}
-                            className="flex justify-between hover:bg-slate-300 px-2 py-3 text-sm font-extralight border border-slate-400">
-                            <h2 className="pr-3.5 ">No</h2>
-                            <h2 className="w-32 ">Nasi Ayam special</h2>
-                            <div className="pr-3 w-[7.5rem]">
-                                <input
-                                    className="w-full h-5 rounded-md border border-slate-300 pl-1"
-                                    type="number"
-                                />
+
+                        {cart.map((item) => (
+                            <div className="flex justify-between hover:bg-slate-300 px-2 py-3 text-sm font-extralight border border-slate-400">
+                                <h2 className="pr-3.5 ">{item.no}</h2>
+                                <h2 className="w-32 ">{item.nama}</h2>
+                                <div className="pr-3 w-[7.5rem]">
+                                    <input
+                                        className="w-full h-5 rounded-md border border-slate-300 pl-1"
+                                        type="number"
+                                    />
+                                </div>
+                                <h2 className="w-32 ">{item.harga}</h2>
+                                <h2 className="bg-red-500 hover:bg-red-600 hover:cursor-pointer px-1 rounded-sm text-white">
+                                    x
+                                </h2>
                             </div>
-                            <h2 className="w-32 ">Harga</h2>
-                            <h2 className="bg-red-500 hover:bg-red-600 hover:cursor-pointer px-1 rounded-sm text-white">
-                                x
-                            </h2>
-                        </div>
+                        ))}
 
                         <div>
                             <div className="border flex gap-1.5">
@@ -206,8 +224,12 @@ const Home = () => {
                         </div>
 
                         <div className="flex justify-between w-2/4 mx-auto mt-5">
-                            <button className="bg-yellow-300 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-yellow-400">Selesai</button>
-                            <button className="bg-blue-300 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-blue-400">Cetak</button>
+                            <button className="bg-yellow-300 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-yellow-400">
+                                Selesai
+                            </button>
+                            <button className="bg-blue-300 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-blue-400">
+                                Cetak
+                            </button>
                         </div>
                     </div>
                 </div>
