@@ -13,7 +13,7 @@ const Home = () => {
     const navigate = useNavigate();
     return (
         <Kasir_Layout>
-            <div className="flex">
+            <div className="flex justify-between">
                 <div className="border w-4/6">
                     <div className="flex items-center">
                         <MdOutlineDataset className="text-3xl" />
@@ -120,10 +120,95 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="border w-[34%]">
+
+                <div className="border w-[30%]">
                     <div className="flex items-center">
                         <FaShoppingCart className="text-3xl" />
                         <h1>Keranjang</h1>
+                    </div>
+
+                    <div className="border flex justify-between">
+                        <label htmlFor="">ATAS NAMA :</label>
+                        <input type="text" className="border" />
+                    </div>
+
+                    <div>
+                        <div className="flex">
+                            <FaShoppingCart />
+                            <p>List Keranjang</p>
+                        </div>
+
+                        <div
+                            onClick={() => navigate(`Detail-stock/${item.id}`)}
+                            className="flex justify-between hover:bg-slate-300 px-2 py-1.5 text-sm font-extralight mt-2 border border-slate-400">
+                            <h2 className="pr-3.5 ">No</h2>
+                            <h2 className="w-32 ">Nama</h2>
+                            <h2 className="w-32 ">Qty</h2>
+                            <h2 className="w-32 ">Harga</h2>
+                            <h2 className="px-1">#</h2>
+                        </div>
+
+                        <div
+                            onClick={() => navigate(`Detail-stock/${item.id}`)}
+                            className="flex justify-between hover:bg-slate-300 px-2 py-3 text-sm font-extralight border border-slate-400">
+                            <h2 className="pr-3.5 ">No</h2>
+                            <h2 className="w-32 ">Nasi Ayam special</h2>
+                            <div className="pr-3 w-[7.5rem]">
+                                <input
+                                    className="w-full h-5 rounded-md border border-slate-300 pl-1"
+                                    type="number"
+                                />
+                            </div>
+                            <h2 className="w-32 ">Harga</h2>
+                            <h2 className="bg-red-500 hover:bg-red-600 hover:cursor-pointer px-1 rounded-sm text-white">
+                                x
+                            </h2>
+                        </div>
+                        <div
+                            onClick={() => navigate(`Detail-stock/${item.id}`)}
+                            className="flex justify-between hover:bg-slate-300 px-2 py-3 text-sm font-extralight border border-slate-400">
+                            <h2 className="pr-3.5 ">No</h2>
+                            <h2 className="w-32 ">Nasi Ayam special</h2>
+                            <div className="pr-3 w-[7.5rem]">
+                                <input
+                                    className="w-full h-5 rounded-md border border-slate-300 pl-1"
+                                    type="number"
+                                />
+                            </div>
+                            <h2 className="w-32 ">Harga</h2>
+                            <h2 className="bg-red-500 hover:bg-red-600 hover:cursor-pointer px-1 rounded-sm text-white">
+                                x
+                            </h2>
+                        </div>
+
+                        <div>
+                            <div className="border flex gap-1.5">
+                                <label htmlFor="" className="border">
+                                    Total Bayar
+                                </label>
+                                <p>:</p>
+                                <input type="number" className="border" />
+                            </div>
+                            <div className="border flex gap-1.5">
+                                <label htmlFor="" className="border pr-[46px]">
+                                    Cash
+                                </label>
+                                <p>:</p>
+                                <input type="number" className="border" />
+                            </div>
+                            <div className="border flex gap-1.5">
+                                <label htmlFor="" className="border pr-[22px]">
+                                    Kembali
+                                </label>
+                                <p>:</p>
+                                <input type="number" className="border" />
+                            </div>
+                        </div>
+
+                        <div className="flex justify-between w-2/4 mx-auto mt-5">
+                            <button className="bg-yellow-300 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-yellow-400">Selesai</button>
+                            <button className="bg-blue-300 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-blue-400">Cetak</button>
+                        </div>
                     </div>
                 </div>
             </div>
