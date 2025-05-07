@@ -30,10 +30,10 @@ const Navbar = () => {
 
             <div className="lg:flex hidden list-none text-xl justify-between w-1/2  text-white font-bold">
                 <li>
-                    <Link className="hover:text-yellow-300">Kasir</Link>
+                    <Link to={"/"} className="hover:text-yellow-300">Kasir</Link>
                 </li>
                 <li>
-                    <Link className="hover:text-yellow-300">Manage Menu</Link>
+                    <Link to={"/manage-menu"} className="hover:text-yellow-300">Manage Menu</Link>
                 </li>
                 <li>
                     <Link className="hover:text-yellow-300">Transaksi</Link>
@@ -63,7 +63,7 @@ const Navbar = () => {
                 <li className="mb-10">
                     <Link
                         className="text-lg hover:text-yellow-500 hover:underline text-white"
-                        to={"/Analisis-chart"}>
+                        to={"/manage-menu"}>
                         MANAGE MENU
                     </Link>
                 </li>
