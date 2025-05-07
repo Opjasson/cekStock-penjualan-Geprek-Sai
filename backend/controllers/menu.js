@@ -1,4 +1,4 @@
-import menuModel from "./models/menuModel.js";
+import menuModel from "../models/menuModel.js";
 
 export const createMenu = async (req, res) => {
     try {
@@ -29,7 +29,7 @@ export const getMenus = async (req, res) => {
                 "img",
             ],
         });
-        res.status(201).json(response);
+        res.status(201).json({msg: "Get succefully",data : response});
     } catch (error) {
         res.status(400).json({ msg: error.message });
     }
