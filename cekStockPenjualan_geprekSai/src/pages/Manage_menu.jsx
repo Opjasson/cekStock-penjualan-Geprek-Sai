@@ -4,6 +4,7 @@ import { menu1 } from "../assets";
 import { MdOutlineDataset } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoAddCircleOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const keranjang = [
     {
@@ -68,10 +69,10 @@ const Manage_menu = () => {
                         <option value="makanan">Makanan</option>
                     </select>
                     {/* end filter menu */}
-                    <button className="flex items-center gap-2 bg-green-600 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-green-700 text-white">
+                    <Link to={"/manage-menu/add-menu"} className="flex items-center gap-2 bg-green-600 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-green-700 text-white">
                         <IoAddCircleOutline className="text-lg"/>
                         Tambah
-                    </button>
+                    </Link>
                 </div>
 
                 {/* Show all menu */}
