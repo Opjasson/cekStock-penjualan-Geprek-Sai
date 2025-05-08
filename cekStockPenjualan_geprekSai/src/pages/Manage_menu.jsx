@@ -63,7 +63,7 @@ const Manage_menu = () => {
                     <select
                         name=""
                         id=""
-                        className="w-56 py-2 bg-green-600 rounded-lg text-white">
+                        className="w-56 px-1.5 py-2 bg-green-600 rounded-lg text-white">
                         <option value="">Semua kategori</option>
                         <option value="minuman">Minuman</option>
                         <option value="makanan">Makanan</option>
