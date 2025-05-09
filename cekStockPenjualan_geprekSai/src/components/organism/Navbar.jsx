@@ -36,9 +36,6 @@ const Navbar = () => {
                     <Link to={"/manage-menu"} className="hover:text-yellow-300">Manage Menu</Link>
                 </li>
                 <li>
-                    <Link className="hover:text-yellow-300">Transaksi</Link>
-                </li>
-                <li>
                     <Link to={"/stock-bahan"} className="hover:text-yellow-300">Stok Bahan</Link>
                 </li>
             </div>
@@ -65,13 +62,6 @@ const Navbar = () => {
                         className="text-lg hover:text-yellow-500 hover:underline text-white"
                         to={"/manage-menu"}>
                         MANAGE MENU
-                    </Link>
-                </li>
-                <li className="mb-10">
-                    <Link
-                        className="text-lg hover:text-yellow-500 hover:underline text-white"
-                        to={"/Semua-data"}>
-                        TRANSAKSI
                     </Link>
                 </li>
                 <li className="mb-10">
