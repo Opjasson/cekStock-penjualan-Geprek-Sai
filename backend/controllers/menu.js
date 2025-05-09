@@ -1,4 +1,3 @@
-import { where } from "sequelize";
 import menuModel from "../models/menuModel.js";
 
 export const createMenu = async (req, res) => {
