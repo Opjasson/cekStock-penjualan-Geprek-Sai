@@ -1,51 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Kasir_Layout from "../components/mainLayout/Kasir_Layout";
 import { menu1 } from "../assets";
 import { MdOutlineDataset } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const keranjang = [
-    {
-        id: 1,
-        nama: "ayam bakar",
-        image: menu1,
-        idr: 15000,
-    },
-    {
-        id: 2,
-        nama: "ayam chicken",
-        image: menu1,
-        idr: 25000,
-    },
-    {
-        id: 3,
-        nama: "ayam chicken",
-        image: menu1,
-        idr: 25000,
-    },
-    {
-        id: 4,
-        nama: "ayam chicken",
-        image: menu1,
-        idr: 25000,
-    },
-    {
-        id: 5,
-        nama: "ayam chicken",
-        image: menu1,
-        idr: 25000,
-    },
-    {
-        id: 6,
-        nama: "ayam chicken",
-        image: menu1,
-        idr: 25000,
-    },
-];
+
 
 const Manage_menu = () => {
+    const [data, setData] = useState([])
+
+
+     const getMenus = async () => {
+         try {
+             const response = await axios.get("http://localhost:8000/menu");
+             setData(response.data);
+         } catch (error) {
+             console.log(error);
+         }
+     };
+
+     useEffect(() => {
+        getMenus()
+     }, [])
     return (
         <Kasir_Layout>
             {/* Session Data menu list */}
@@ -77,22 +56,22 @@ const Manage_menu = () => {
 
                 {/* Show all menu */}
                 <div className="flex flex-wrap justify-around mt-12 relative">
-                    {keranjang.map((item) => (
+                    {data.map((item) => (
                         <div
                             className="border w-48 mb-5 hover:cursor-pointer rounded-lg overflow-hidden hover:bg-slate-200 shadow-lg"
                             key={item.id}>
                             <div className="px-1.5 py-1.5">
                                 <img
-                                    src={item.image}
+                                    src={item.img}
                                     alt=""
                                     className="md:h-28 h-16 border mx-auto w-full"
                                 />
                             </div>
 
                             <div className="text-center pb-2.5 font-bold">
-                                <p>{item.nama}</p>
-                                <p className="text-green-500">Rp.{item.idr}</p>
-                                <p>Stock : 10x</p>
+                                <p>{item.nama_menu}</p>
+                                <p className="text-green-500">Rp.{item.harga}</p>
+                                <p>Stock : {item.stock_menu}x</p>
                             </div>
                         </div>
                     ))}

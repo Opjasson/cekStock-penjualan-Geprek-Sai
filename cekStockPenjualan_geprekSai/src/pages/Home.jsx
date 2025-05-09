@@ -3,47 +3,7 @@ import Kasir_Layout from "../components/mainLayout/Kasir_Layout";
 import { MdOutlineDataset } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { logoSai, menu1 } from "../assets";
-
-
-const keranjang = [
-    {
-        id: 1,
-        nama: "ayam bakar",
-        image: menu1,
-        idr: 15000,
-    },
-    {
-        id: 2,
-        nama: "ayam chicken",
-        image: menu1,
-        idr: 25000,
-    },
-    {
-        id: 3,
-        nama: "ayam chicken",
-        image: menu1,
-        idr: 25000,
-    },
-    {
-        id: 4,
-        nama: "ayam chicken",
-        image: menu1,
-        idr: 25000,
-    },
-    {
-        id: 5,
-        nama: "ayam chicken",
-        image: menu1,
-        idr: 25000,
-    },
-    {
-        id: 6,
-        nama: "ayam chicken",
-        image: menu1,
-        idr: 25000,
-    },
-];
+import axios from "axios";
 
 const Home = () => {
     const [data, setData] = useState([]);
@@ -55,6 +15,15 @@ const Home = () => {
 
     const navigate = useNavigate();
 
+    const getMenus = async () => {
+        try {
+            const response = await axios.get("http://localhost:8000/menu");
+            setData(response.data)
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const addCart = (id) => {
         if (cart.find((item) => item.id === id)) {
             setCart(
@@ -65,10 +34,10 @@ const Home = () => {
                 )
             );
         } else {
-            const masuk = keranjang.filter((e) => e.id === id);
+            const masuk = data.filter((e) => e.id === id);
             console.log(masuk);
             masuk.map((a) =>
-                setCart([...cart, { id, nama: a.nama, qty: 1, idr: a.idr }])
+                setCart([...cart, { id, nama: a.nama_menu, qty: 1, idr: a.harga }])
             );
         }
     };
@@ -81,16 +50,20 @@ const Home = () => {
     useEffect(() => {
         if (cart.length > 0) {
             const sum = cart.reduce((acc, item) => {
-                const product = keranjang.find(
+                const product = data.find(
                     (productItem) => productItem.id === item.id
                 );
-                return acc + product.idr * item.qty;
+                return acc + product.harga * item.qty;
             }, 0);
             setTotalPrice(sum);
         } else {
             setTotalPrice(0);
         }
-    }, [cart]);
+    }, [cart, data]);
+
+    useEffect(() => {
+        getMenus();
+    },[]);
 
     return (
         <Kasir_Layout>
@@ -117,25 +90,25 @@ const Home = () => {
 
                     {/* Show all menu */}
                     <div className="flex flex-wrap justify-around mt-12 relative">
-                        {keranjang.map((item) => (
+                        {data.map((item) => (
                             <div
                                 onClick={() => addCart(item.id)}
                                 className="border w-48 mb-5 hover:cursor-pointer rounded-lg overflow-hidden hover:bg-slate-200 shadow-lg"
                                 key={item.id}>
                                 <div className="px-1.5 py-1.5">
                                     <img
-                                        src={item.image}
+                                        src={item.img}
                                         alt=""
                                         className="md:h-28 h-16 border mx-auto w-full"
                                     />
                                 </div>
 
                                 <div className="text-center pb-2.5 font-bold">
-                                    <p>{item.nama}</p>
+                                    <p>{item.nama_menu}</p>
                                     <p className="text-green-500">
-                                        Rp.{item.idr}
+                                        Rp.{item.harga}
                                     </p>
-                                    <p>Stock : 10x</p>
+                                    <p>Stock : {item.stock_menu}</p>
                                 </div>
                             </div>
                         ))}
@@ -155,7 +128,7 @@ const Home = () => {
 
                     <div className="flex justify-between px-2 mb-5">
                         <label htmlFor="">ATAS NAMA</label>
-                        <input type="text" className="border rounded-md" />
+                        <input type="text" className="border rounded-md px-2" />
                     </div>
 
                     <div>
@@ -186,7 +159,7 @@ const Home = () => {
                                             : item.idr}
                                     </h2>
                                     <h2
-                                        className="bg-red-500 hover:bg-red-600 hover:cursor-pointer px-1 rounded-sm text-white"
+                                        className="bg-red-500 hover:bg-red-600 hover:cursor-pointer px-1 rounded-sm text-white h-fit"
                                         onClick={() => onDelete(item.id)}>
                                         x
                                     </h2>
