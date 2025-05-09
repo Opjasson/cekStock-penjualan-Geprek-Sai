@@ -67,16 +67,15 @@ export const updateData_Menu = async (req, res) => {
         const { nama_menu, harga, kategori, stock_menu, img } = req.body;
         await dataMenu.update(
             {
-                nama_Barang,
-                satuan,
-                stok_awal,
-                barang_masuk,
-                barang_keluar,
-                stok_akhir: stok_awal + barang_masuk - barang_keluar,
+                nama_menu,
+                harga,
+                kategori,
+                stock_menu,
+                img,
             },
             {
                 where: {
-                    id: dataStock.id,
+                    id: dataMenu.id,
                 },
             }
         );
