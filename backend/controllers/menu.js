@@ -1,3 +1,4 @@
+import { where } from "sequelize";
 import menuModel from "../models/menuModel.js";
 
 export const createMenu = async (req, res) => {
@@ -20,6 +21,27 @@ export const createMenu = async (req, res) => {
 export const getMenus = async (req, res) => {
     try {
         const response = await menuModel.findAll({
+            attributes: [
+                "id",
+                "nama_menu",
+                "harga",
+                "kategori",
+                "stock_menu",
+                "img",
+            ],
+        });
+        res.status(201).json(response);
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
+
+export const getMenusById = async (req, res) => {
+    try {
+        const response = await menuModel.find({
+            where: {
+                id : req.params.id
+            },
             attributes: [
                 "id",
                 "nama_menu",
