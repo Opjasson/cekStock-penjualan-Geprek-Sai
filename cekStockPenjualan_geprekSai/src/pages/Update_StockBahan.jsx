@@ -10,7 +10,7 @@ const Update_StockBahan = () => {
    const [stokAwal, setStokAwal] = useState(0);
    const [barangMasuk, setBarangMasuk] = useState(0);
    const [barangKeluar, setBarangKeluar] = useState(0);
-   const [stokAkhir, setStokAkhir] = useState(0);
+   const [stokAkhir, setStokAkhir] = useState();
 
    const navigate = useNavigate();
 
@@ -25,13 +25,12 @@ const Update_StockBahan = () => {
                setStokAwal(stock.data.stok_awal);
                setBarangMasuk(stock.data.barang_masuk);
                setBarangKeluar(stock.data.barang_keluar);
-               setStokAkhir(stokAwal + barangMasuk - barangKeluar);
            } catch (error) {
                console.log(error);
            }
        };
        getData();
-   }, [id, barangKeluar, barangMasuk, stokAwal]);
+   }, [id]);
 
    const handleUpdate = async (e) => {
        e.preventDefault();
@@ -50,8 +49,6 @@ const Update_StockBahan = () => {
            console.log(error);
        }
    };
-
-   console.log(satuan);
 
    return (
        <Kasir_Layout>
@@ -155,17 +152,13 @@ const Update_StockBahan = () => {
                            *Otomatis terisi
                        </span>
                    </label>
+                   <p>{stokAkhir}</p>
                    <input
                        disabled
                        id="stokAkhir"
                        className="border rounded-xl p-1.5 md:p-2 bg-slate-300"
                        type="number"
-                       value={
-                           parseInt(stokAwal) +
-                           parseInt(barangMasuk) -
-                           parseInt(barangKeluar)
-                       }
-                       onChange={(e) => setStokAkhir(e.target.value)}
+                       onChange={() => setStokAkhir(stokAwal + barangMasuk - barangKeluar)}
                    />
                </div>
 

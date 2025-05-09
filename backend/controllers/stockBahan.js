@@ -52,7 +52,6 @@ export const update_StokBahan = async (req, res) => {
             stok_awal,
             barang_masuk,
             barang_keluar,
-            stok_akhir,
         } = req.body;
         await stokBahan_Model.update(
             {
@@ -61,7 +60,7 @@ export const update_StokBahan = async (req, res) => {
                 stok_awal,
                 barang_masuk,
                 barang_keluar,
-                stok_akhir,
+                stok_akhir : stok_awal + barang_masuk - barang_keluar,
             },
             {
                 where: { id: req.params.id },
