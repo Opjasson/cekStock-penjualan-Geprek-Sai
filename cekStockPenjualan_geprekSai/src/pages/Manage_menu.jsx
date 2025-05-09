@@ -25,6 +25,8 @@ const Manage_menu = () => {
      useEffect(() => {
         getMenus()
      }, [])
+
+    
     return (
         <Kasir_Layout>
             {/* Session Data menu list */}
