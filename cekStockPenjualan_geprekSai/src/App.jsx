@@ -14,6 +14,7 @@ function App() {
                     <Route path="/manage-menu" element={<Manage_menu />} />
                     <Route path="/manage-menu/add-menu" element={<Add_menu />} />
                     <Route path="/manage-menu/update-menu/:id" element={<Update_menu />} />
+                    <Route path="/stock-bahan" element={<Update_menu />} />
                 </Routes>
             </BrowserRouter>
         </>
