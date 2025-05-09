@@ -39,7 +39,7 @@ const Navbar = () => {
                     <Link className="hover:text-yellow-300">Transaksi</Link>
                 </li>
                 <li>
-                    <Link className="hover:text-yellow-300">Stok Bahan</Link>
+                    <Link to={"/stock-bahan"} className="hover:text-yellow-300">Stok Bahan</Link>
                 </li>
             </div>
 
@@ -77,7 +77,7 @@ const Navbar = () => {
                 <li className="mb-10">
                     <Link
                         className="text-lg hover:text-yellow-500 hover:underline text-white"
-                        to={"/Semua-data"}>
+                        to={"/stock-bahan"}>
                         STOK BAHAN
                     </Link>
                 </li>

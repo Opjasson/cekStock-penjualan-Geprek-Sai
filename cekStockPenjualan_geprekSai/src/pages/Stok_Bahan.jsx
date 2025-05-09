@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import Kasir_Layout from '../components/mainLayout/Kasir_Layout';
 
 const Stok_Bahan = () => {
   const [data, setData] = useState([]);
@@ -39,7 +40,7 @@ const Stok_Bahan = () => {
   //    console.log(lengthData);
 
   return (
-      <MainLayout>
+      <Kasir_Layout>
           <div className="flex justify-between items-center w-full">
               <div>
                   <h1 className="lg:text-2xl text-sm text-blue-500">
@@ -107,7 +108,7 @@ const Stok_Bahan = () => {
                   </div>
               )}
           </div>
-      </MainLayout>
+      </Kasir_Layout>
   );
 }
 
