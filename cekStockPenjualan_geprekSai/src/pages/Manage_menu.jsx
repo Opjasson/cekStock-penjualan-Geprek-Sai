@@ -60,7 +60,7 @@ const Manage_menu = () => {
                     {data.map((item) => (
                         <div
                             onClick={() =>
-                                navigate(`/manage-menu/updatemenu/${item.id}`)
+                                navigate(`/manage-menu/update-menu/${item.id}`)
                             }
                             className="border w-48 mb-5 hover:cursor-pointer rounded-lg overflow-hidden hover:bg-slate-200 shadow-lg"
                             key={item.id}>
