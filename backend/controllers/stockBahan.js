@@ -1,4 +1,3 @@
-import { where } from "sequelize";
 import stokBahan_Model from "../models/stokBahanModel.js";
 
 export const get_StokBahan = async (req, res) => {
@@ -69,5 +68,22 @@ export const update_StokBahan = async (req, res) => {
             }
         );
         res.status(200).json({ msg: "Data berhasil dirubah" });
-    } catch (error) {}
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
+
+export const getById_StockBahan = async (req, res) => {
+    try {
+        const stock = await stokBahan_Model.findOne({
+            where: {
+                id: req.params.id,
+            },
+        });
+        if (!stock) return res.status(404).json({ msg: "Data tidak ada!" });
+
+        res.status(200).json(stock);
+    } catch (error) {
+        res.status(400).json({ msg: "Internal server error" });
+    }
 };
