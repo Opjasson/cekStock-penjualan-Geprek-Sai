@@ -10,7 +10,6 @@ const Update_StockBahan = () => {
    const [stokAwal, setStokAwal] = useState(0);
    const [barangMasuk, setBarangMasuk] = useState(0);
    const [barangKeluar, setBarangKeluar] = useState(0);
-   const [stokAkhir, setStokAkhir] = useState();
 
    const navigate = useNavigate();
 
@@ -38,10 +37,9 @@ const Update_StockBahan = () => {
            await axios.patch(`http://localhost:8000/stock/${id}`, {
                nama_barang: namabarang,
                satuan: satuan,
-               stok_awal: stokAwal,
-               barang_masuk: barangMasuk,
-               barang_keluar: barangKeluar,
-               stok_akhir: stokAkhir,
+               stok_awal: parseInt(stokAwal),
+               barang_masuk: parseInt(barangMasuk),
+               barang_keluar: parseInt(barangKeluar),
            });
            alert("Data berhasil dirubah");
            navigate("/");
@@ -152,13 +150,12 @@ const Update_StockBahan = () => {
                            *Otomatis terisi
                        </span>
                    </label>
-                   <p>{stokAkhir}</p>
                    <input
                        disabled
                        id="stokAkhir"
                        className="border rounded-xl p-1.5 md:p-2 bg-slate-300"
                        type="number"
-                       onChange={() => setStokAkhir(stokAwal + barangMasuk - barangKeluar)}
+                       value={parseInt(stokAwal) + parseInt(barangMasuk - parseInt(barangKeluar))}
                    />
                </div>
 
