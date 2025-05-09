@@ -54,10 +54,12 @@ const Stok_Bahan = () => {
                     </p>
                 </div>
 
-                <h3 className="text-xl font-bold uppercase">Menampilkan daftar stock bahan baku. Hari ini</h3>
+                <h3 className="text-xl font-bold uppercase">
+                    Menampilkan daftar stock bahan baku. Hari ini
+                </h3>
 
                 <Link
-                    to={"/Add-stock"}
+                    to={"/stock-bahan/add-stockBahan"}
                     className="bg-green-600 hover:bg-green-700 lg:px-10 px-3 lg:py-1.5 rounded-xl text-white lg:text-base text-sm">
                     + Tambah
                 </Link>
