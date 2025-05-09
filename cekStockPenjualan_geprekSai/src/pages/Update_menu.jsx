@@ -9,6 +9,7 @@ const Update_menu = () => {
     const [harga, setHarga] = useState(0);
     const [stock_menu, setStokMenu] = useState(0);
     const [img, setImg] = useState("");
+    
 
     const { id } = useParams();
 

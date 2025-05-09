@@ -9,6 +9,7 @@ import axios from "axios";
 
 const Manage_menu = () => {
     const [data, setData] = useState([]);
+    const [filter, setFilter] = useState([]);
 
     const navigate = useNavigate();
     const getMenus = async () => {
@@ -19,6 +20,13 @@ const Manage_menu = () => {
             console.log(error);
         }
     };
+
+    // fungsi untuk men filter menu
+    function filterMenu() {
+        const filterData = data.filter((item) => item.kategori === filter);
+        return filterData;
+    }
+    // end filter
 
     useEffect(() => {
         getMenus();
@@ -39,8 +47,9 @@ const Manage_menu = () => {
                 <div className="flex w-1/2 justify-between px-8">
                     {/* filter menu */}
                     <select
-                        name=""
-                        id=""
+                        name="filter"
+                        id="filter"
+                        onChange={(e) => setFilter(e.target.value)}
                         className="w-56 px-1.5 py-2 bg-green-600 rounded-lg text-white">
                         <option value="">Semua kategori</option>
                         <option value="minuman">Minuman</option>
@@ -57,30 +66,59 @@ const Manage_menu = () => {
 
                 {/* Show all menu */}
                 <div className="flex flex-wrap justify-around mt-12 relative">
-                    {data.map((item) => (
-                        <div
-                            onClick={() =>
-                                navigate(`/manage-menu/update-menu/${item.id}`)
-                            }
-                            className="border w-48 mb-5 hover:cursor-pointer rounded-lg overflow-hidden hover:bg-slate-200 shadow-lg"
-                            key={item.id}>
-                            <div className="px-1.5 py-1.5">
-                                <img
-                                    src={item.img}
-                                    alt=""
-                                    className="md:h-28 h-16 border mx-auto w-full"
-                                />
-                            </div>
+                    {filter.length > 0
+                        ? filterMenu().map((item) => (
+                              <div
+                                  onClick={() =>
+                                      navigate(
+                                          `/manage-menu/update-menu/${item.id}`
+                                      )
+                                  }
+                                  className="border w-48 mb-5 hover:cursor-pointer rounded-lg overflow-hidden hover:bg-slate-200 shadow-lg"
+                                  key={item.id}>
+                                  <div className="px-1.5 py-1.5">
+                                      <img
+                                          src={item.img}
+                                          alt=""
+                                          className="md:h-28 h-16 border mx-auto w-full"
+                                      />
+                                  </div>
 
-                            <div className="text-center pb-2.5 font-bold">
-                                <p>{item.nama_menu}</p>
-                                <p className="text-green-500">
-                                    Rp.{item.harga}
-                                </p>
-                                <p>Stock : {item.stock_menu}x</p>
-                            </div>
-                        </div>
-                    ))}
+                                  <div className="text-center pb-2.5 font-bold">
+                                      <p>{item.nama_menu}</p>
+                                      <p className="text-green-500">
+                                          Rp.{item.harga}
+                                      </p>
+                                      <p>Stock : {item.stock_menu}x</p>
+                                  </div>
+                              </div>
+                          ))
+                        : data.map((item) => (
+                              <div
+                                  onClick={() =>
+                                      navigate(
+                                          `/manage-menu/update-menu/${item.id}`
+                                      )
+                                  }
+                                  className="border w-48 mb-5 hover:cursor-pointer rounded-lg overflow-hidden hover:bg-slate-200 shadow-lg"
+                                  key={item.id}>
+                                  <div className="px-1.5 py-1.5">
+                                      <img
+                                          src={item.img}
+                                          alt=""
+                                          className="md:h-28 h-16 border mx-auto w-full"
+                                      />
+                                  </div>
+
+                                  <div className="text-center pb-2.5 font-bold">
+                                      <p>{item.nama_menu}</p>
+                                      <p className="text-green-500">
+                                          Rp.{item.harga}
+                                      </p>
+                                      <p>Stock : {item.stock_menu}x</p>
+                                  </div>
+                              </div>
+                          ))}
                 </div>
                 {/* end show all menu */}
             </div>
