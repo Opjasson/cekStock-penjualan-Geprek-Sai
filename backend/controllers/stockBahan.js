@@ -1,5 +1,25 @@
 import stokBahan_Model from "../models/stokBahanModel.js";
 
+export const get_StokBahan = async (req, res) => {
+    try {
+        const response = await stokBahan_Model.findAll({
+            attributes: {
+                id,
+                nama_barang,
+                satuan,
+                stok_awal,
+                barang_masuk,
+                barang_keluar,
+                stok_akhir,
+                createdAt
+            },
+        });
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(400).json({msg : error.message})
+    }
+}
+
 export const create_StokBahan = async (req, res) => {
     try {
         const {
