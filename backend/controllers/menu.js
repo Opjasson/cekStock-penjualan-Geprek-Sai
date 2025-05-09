@@ -38,7 +38,7 @@ export const getMenus = async (req, res) => {
 
 export const getMenuById = async (req, res) => {
     try {
-        const response = await menuModel.find({
+        const response = await menuModel.findOne({
             where: {
                 id : req.params.id
             },
