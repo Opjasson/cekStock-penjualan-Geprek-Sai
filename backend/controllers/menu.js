@@ -34,3 +34,32 @@ export const getMenus = async (req, res) => {
         res.status(400).json({ msg: error.message });
     }
 };
+
+export const updateData_Menu = async (req, res) => {
+    try {
+        const dataMenu = await menuModel.findOne({
+            where: {
+                id: req.params.id,
+            },
+        });
+        const { nama_menu, harga, kategori, stock_menu, img } = req.body;
+        await dataMenu.update(
+            {
+                nama_Barang,
+                satuan,
+                stok_awal,
+                barang_masuk,
+                barang_keluar,
+                stok_akhir: stok_awal + barang_masuk - barang_keluar,
+            },
+            {
+                where: {
+                    id: dataStock.id,
+                },
+            }
+        );
+        res.status(200).json({ msg: "data berhasil dirubah!" });
+    } catch (error) {
+        res.status(404).json({ msg: error.message });
+    }
+};
