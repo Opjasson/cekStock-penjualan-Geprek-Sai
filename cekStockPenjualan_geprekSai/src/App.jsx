@@ -5,6 +5,7 @@ import Add_menu from "./pages/Add_menu";
 import Update_menu from "./pages/Update_menu";
 import Stok_Bahan from "./pages/Stok_Bahan";
 import Add_StockBahan from "./pages/Add_StockBahan";
+import Update_StockBahan from "./pages/Update_StockBahan";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/manage-menu/update-menu/:id" element={<Update_menu />} />
                     <Route path="/stock-bahan" element={<Stok_Bahan />} />
                     <Route path="/stock-bahan/add-stockBahan" element={<Add_StockBahan />} />
+                    <Route path="/stock-bahan/update-stockBahan/:id" element={<Update_StockBahan />} />
                 </Routes>
             </BrowserRouter>
         </>

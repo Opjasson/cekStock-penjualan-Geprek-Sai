@@ -47,7 +47,7 @@ const Stok_Bahan = () => {
             <div className="flex justify-between items-center w-full">
                 <div className="bg-green-600 px-5 rounded-xl">
                     <h1 className="lg:text-2xl text-sm text-white border-b-2">
-                        Stock barang
+                        Date :
                     </h1>
                     <p className="text-white">
                         {date.toISOString().split("T")[0]}
@@ -85,7 +85,9 @@ const Stok_Bahan = () => {
                             <div
                                 key={index}
                                 onClick={() =>
-                                    navigate(`Detail-stock/${item.id}`)
+                                    navigate(
+                                        `/stock-bahan/update-stockBahan/${item.id}`
+                                    )
                                 }
                                 className="flex justify-between hover:cursor-pointer hover:bg-slate-300 lg:px-5 px-2 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 ">
                                 <h2 key={index + 1} className="">
