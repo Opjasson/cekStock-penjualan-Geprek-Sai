@@ -1,24 +1,25 @@
+import { where } from "sequelize";
 import stokBahan_Model from "../models/stokBahanModel.js";
 
 export const get_StokBahan = async (req, res) => {
     try {
         const response = await stokBahan_Model.findAll({
-            attributes: {
-                id,
-                nama_barang,
-                satuan,
-                stok_awal,
-                barang_masuk,
-                barang_keluar,
-                stok_akhir,
-                createdAt
-            },
+            attributes: [
+                "id",
+                "nama_barang",
+                "satuan",
+                "stok_awal",
+                "barang_masuk",
+                "barang_keluar",
+                "stok_akhir",
+                "createdAt",
+            ],
         });
-        res.status(200).json(response)
+        res.status(200).json(response);
     } catch (error) {
-        res.status(400).json({msg : error.message})
+        res.status(400).json({ msg: error.message });
     }
-}
+};
 
 export const create_StokBahan = async (req, res) => {
     try {
@@ -38,8 +39,35 @@ export const create_StokBahan = async (req, res) => {
             barang_keluar,
             stok_akhir,
         });
-        res.status(200).json({msg: "Data berhasil dibuat!"})
+        res.status(200).json({ msg: "Data berhasil dibuat!" });
     } catch (error) {
-        res.status(400).json({msg : error.message})
+        res.status(400).json({ msg: error.message });
     }
+};
+
+export const update_StokBahan = async (req, res) => {
+    try {
+        const {
+            nama_barang,
+            satuan,
+            stok_awal,
+            barang_masuk,
+            barang_keluar,
+            stok_akhir,
+        } = req.body;
+        await stokBahan_Model.update(
+            {
+                nama_barang,
+                satuan,
+                stok_awal,
+                barang_masuk,
+                barang_keluar,
+                stok_akhir,
+            },
+            {
+                where: { id: req.params.id },
+            }
+        );
+        res.status(200).json({ msg: "Data berhasil dirubah" });
+    } catch (error) {}
 };
