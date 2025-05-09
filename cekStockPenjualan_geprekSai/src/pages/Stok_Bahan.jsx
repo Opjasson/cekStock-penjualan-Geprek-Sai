@@ -28,10 +28,12 @@ const Stok_Bahan = () => {
 
     let dataTerkini = date.toISOString().split("T")[0];
 
+    console.log(data);
+
     // filter data berdasaran hasil search
     const filterNama = data.filter((item) => {
         const words = findLower.split(" ");
-        return words.some((word) => item.nama_Barang.includes(word));
+        return words.some((word) => item.nama_barang.includes(word));
     });
 
     const lengthData = filterNama.filter(
@@ -52,23 +54,13 @@ const Stok_Bahan = () => {
                     </p>
                 </div>
 
-                <div className="flex lg:w-[30rem] w-60 justify-between">
-                    <div className="flex items-center bg-slate-300 lg:px-2 px-1 lg:py-1.5 py-0 lg:rounded-xl rounded-sm lg:w-80 w-[55%]">
-                        <input
-                            type="text"
-                            placeholder="Cari nama..."
-                            className="outline-none w-full text-sm"
-                            onChange={(e) => setfindLower(e.target.value)}
-                        />
-                        <FaMagnifyingGlass className="lg:text-2xl" />
-                    </div>
+                <h3 className="text-xl font-bold uppercase">Menampilkan daftar stock bahan baku. Hari ini</h3>
 
-                    <Link
-                        to={"/Add-stock"}
-                        className="bg-green-600 hover:bg-green-700 lg:px-2 px-3 lg:py-1.5 rounded-xl text-white lg:text-base text-sm">
-                        + Tambah
-                    </Link>
-                </div>
+                <Link
+                    to={"/Add-stock"}
+                    className="bg-green-600 hover:bg-green-700 lg:px-10 px-3 lg:py-1.5 rounded-xl text-white lg:text-base text-sm">
+                    + Tambah
+                </Link>
             </div>
 
             <div className="mt-7 border-b-2 border-blue-500 pb-16">
@@ -82,49 +74,36 @@ const Stok_Bahan = () => {
                     <h2 className=" lg:w-32 w-fit">Stock akhir</h2>
                 </div>
 
-                {/* {lengthData.length > 0 ? (
-                  filterNama
-                      .filter((a) => a.createdAt.split("T")[0] === dataTerkini)
-                      .map((item, index) => (
-                          <div
-                              key={index}
-                              onClick={() =>
-                                  navigate(`Detail-stock/${item.id}`)
-                              }
-                              className="flex justify-between hover:cursor-pointer hover:bg-slate-300 lg:px-5 px-2 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 border-slate-400 border">
-                              <h2 key={index + 1} className="">
-                                  {index + 1}
-                              </h2>
-                              <h2 className=" w-40 ml-3 capitalize">
-                                  {item.nama_Barang}
-                              </h2>
-                              <h2 className="w-32">{item.satuan}</h2>
-                              <h2 className="w-32">{item.stok_awal}</h2>
-                              <h2 className="w-32">{item.barang_masuk}</h2>
-                              <h2 className="w-32">{item.barang_keluar}</h2>
-                              <h2 className="w-32">{item.stok_akhir}</h2>
-                          </div>
-                      ))
-              ) : (
-                  <div className="px-5">
-                      <p className="text-xl mt-5">Belum ada data hari ini!</p>
-                  </div>
-              )} */}
-
-                <div
-                    onClick={() => navigate(`Detail-stock/${item.id}`)}
-                    className="flex justify-between hover:cursor-pointer hover:bg-slate-300 lg:px-5 px-2 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 border-slate-400 border">
-                    <h2 className="">1</h2>
-                    <div className="ml-3">
-                        <img src={menu1} alt="" className="h-32 rounded-xl" />
-                        <h2 className=" w-40 capitalize">semen</h2>
+                {lengthData.length > 0 ? (
+                    filterNama
+                        .filter(
+                            (a) => a.createdAt.split("T")[0] === dataTerkini
+                        )
+                        .map((item, index) => (
+                            <div
+                                key={index}
+                                onClick={() =>
+                                    navigate(`Detail-stock/${item.id}`)
+                                }
+                                className="flex justify-between hover:cursor-pointer hover:bg-slate-300 lg:px-5 px-2 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 ">
+                                <h2 key={index + 1} className="">
+                                    {index + 1}
+                                </h2>
+                                <h2 className="ml-3 w-40 capitalize">
+                                    {item.nama_barang}
+                                </h2>
+                                <h2 className="w-32">{item.satuan}</h2>
+                                <h2 className="w-32">{item.stok_awal}</h2>
+                                <h2 className="w-32">{item.barang_masuk}</h2>
+                                <h2 className="w-32">{item.barang_keluar}</h2>
+                                <h2 className="w-32">{item.stok_akhir}</h2>
+                            </div>
+                        ))
+                ) : (
+                    <div className="px-5">
+                        <p className="text-xl mt-5">Belum ada data hari ini!</p>
                     </div>
-                    <h2 className="w-32">kg</h2>
-                    <h2 className="w-32">20</h2>
-                    <h2 className="w-32">5</h2>
-                    <h2 className="w-32">5</h2>
-                    <h2 className="w-32">0</h2>
-                </div>
+                )}
             </div>
         </Kasir_Layout>
     );
