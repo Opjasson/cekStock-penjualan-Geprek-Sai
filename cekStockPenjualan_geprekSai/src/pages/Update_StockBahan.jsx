@@ -42,7 +42,7 @@ const Update_StockBahan = () => {
                barang_keluar: parseInt(barangKeluar),
            });
            alert("Data berhasil dirubah");
-           navigate("/");
+           navigate("/stock-bahan");
        } catch (error) {
            console.log(error);
        }
