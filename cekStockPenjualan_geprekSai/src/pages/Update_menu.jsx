@@ -7,7 +7,6 @@ const Update_menu = () => {
     const [nama_menu, setNamaMenu] = useState("");
     const [kategori, setKategori] = useState("");
     const [harga, setHarga] = useState(0);
-    const [stock_menu, setStokMenu] = useState(0);
     const [img, setImg] = useState("");
     
 
@@ -24,7 +23,6 @@ const Update_menu = () => {
                 setNamaMenu(response.data.nama_menu);
                 setKategori(response.data.kategori);
                 setHarga(response.data.harga);
-                setStokMenu(response.data.stock_menu);
                 setImg(response.data.img);
             } catch (error) {
                 console.log(error);
@@ -66,7 +64,6 @@ const Update_menu = () => {
                 nama_menu,
                 harga,
                 kategori,
-                stock_menu,
                 img,
             });
             alert("Menu berhasil dirubah!");
@@ -131,21 +128,6 @@ const Update_menu = () => {
                         <option value="makanan">Makanan</option>
                         <option value="minuman">Minuman</option>
                     </select>
-                </div>
-
-                <div className="flex flex-col md:gap-2">
-                    <label className="md:text-xl text-base" htmlFor="stokmenu">
-                        Stok Menu
-                    </label>
-
-                    <input
-                        id="satuan"
-                        className="border rounded-xl p-1.5 md:p-2"
-                        type="number"
-                        value={stock_menu}
-                        required
-                        onChange={(e) => setStokMenu(e.target.value)}
-                    />
                 </div>
 
                 <div className="flex flex-col md:gap-2">
