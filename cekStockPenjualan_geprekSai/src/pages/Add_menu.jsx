@@ -7,7 +7,6 @@ const Add_menu = () => {
     const [nama_menu, setNamaMenu] = useState("");
     const [kategori, setKategori] = useState("");
     const [harga, setHarga] = useState(0);
-    const [stock_menu, setStokMenu] = useState(0);
     const [img, setImg] = useState("");
 
     const navigate = useNavigate();
@@ -45,7 +44,6 @@ const Add_menu = () => {
                 nama_menu,
                 harga,
                 kategori,
-                stock_menu,
                 img,
             });
             alert("Stock berhasil ditambahkan!");
@@ -110,19 +108,6 @@ const Add_menu = () => {
                     </select>
                 </div>
 
-                <div className="flex flex-col md:gap-2">
-                    <label className="md:text-xl text-base" htmlFor="stokmenu">
-                        Stok Menu
-                    </label>
-
-                    <input
-                        id="satuan"
-                        className="border rounded-xl p-1.5 md:p-2"
-                        type="number"
-                        required
-                        onChange={(e) => setStokMenu(e.target.value)}
-                    />
-                </div>
 
                 <div className="flex flex-col md:gap-2">
                     <label className="md:text-xl text-base" htmlFor="gambar">
