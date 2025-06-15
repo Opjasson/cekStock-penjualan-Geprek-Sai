@@ -8,7 +8,6 @@ export const createMenu = async (req, res) => {
             nama_menu,
             harga,
             kategori,
-            stock_menu,
             img,
         });
         res.status(201).json({msg : "Data berhasil ditambahkan"})
@@ -25,7 +24,6 @@ export const getMenus = async (req, res) => {
                 "nama_menu",
                 "harga",
                 "kategori",
-                "stock_menu",
                 "img",
             ],
         });
@@ -46,7 +44,6 @@ export const getMenuById = async (req, res) => {
                 "nama_menu",
                 "harga",
                 "kategori",
-                "stock_menu",
                 "img",
             ],
         });
@@ -69,7 +66,6 @@ export const updateData_Menu = async (req, res) => {
                 nama_menu,
                 harga,
                 kategori,
-                stock_menu,
                 img,
             },
             {
