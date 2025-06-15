@@ -158,10 +158,7 @@ const Home = () => {
                     </div>
                     {/* end head session keranjang */}
 
-                    <div className="flex justify-between px-2 mb-5">
-                        <label htmlFor="">ATAS NAMA</label>
-                        <input type="text" className="border rounded-md px-2" />
-                    </div>
+                    
 
                     <div>
                         <div className="flex gap-2 px-1.5 items-center">
@@ -235,14 +232,10 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className="flex justify-between w-2/4 mx-auto mt-5">
-                            <button className="bg-yellow-300 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-yellow-400">
-                                Selesai
-                            </button>
-                            <button className="bg-blue-300 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-blue-400">
-                                Cetak
-                            </button>
-                        </div>
+                        <button className="bg-blue-300 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-blue-400">
+                            Cetak
+                        </button>
+                        
                     </div>
                 </div>
 
