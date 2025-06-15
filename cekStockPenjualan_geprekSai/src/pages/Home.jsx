@@ -120,7 +120,6 @@ const Home = () => {
                                           <p className="text-green-500">
                                               Rp.{item.harga}
                                           </p>
-                                          <p>Stock : {item.stock_menu}</p>
                                       </div>
                                   </div>
                               ))
