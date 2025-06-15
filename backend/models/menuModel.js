@@ -25,13 +25,6 @@ const menu = db.define("menu", {
             notEmpty: true,
         },
     },
-    stock_menu: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-            notEmpty: true,
-        },
-    },
     img: {
         type: DataTypes.STRING,
         allowNull: false,
