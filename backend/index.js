@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import menuRoute from "./routes/menuRoutes.js";
 import stockBahanRoute from "./routes/stokBahanRoutes.js";
-import menu from "./models/menuModel.js";
+
 
 dotenv.config();
 const app = express();
