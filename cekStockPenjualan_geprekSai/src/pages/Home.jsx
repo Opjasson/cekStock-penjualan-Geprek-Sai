@@ -8,8 +8,6 @@ import axios from "axios";
 
 const Home = () => {
     const [data, setData] = useState([]);
-    const [findLower, setfindLower] = useState("");
-    const [qty, setQty] = useState(0);
     const [cart, setCart] = useState([]);
     const [totalPrice, setTotalPrice] = useState();
     const [cash, setCash] = useState();
