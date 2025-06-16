@@ -5,6 +5,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 const Home = () => {
     const [data, setData] = useState([]);
     const [findLower, setfindLower] = useState("");
@@ -12,8 +13,7 @@ const Home = () => {
     const [cart, setCart] = useState([]);
     const [totalPrice, setTotalPrice] = useState();
     const [cash, setCash] = useState();
-    const [filter, setFilter] = useState([])
-
+    const [filter, setFilter] = useState([]);
 
     const getMenus = async () => {
         try {
@@ -52,6 +52,19 @@ const Home = () => {
         }
     };
 
+    const print = () => {
+        const Navbar = document.querySelector("nav");
+        const DataMenu = document.querySelector("#dataMenu");
+        const PrintButton = document.querySelector("#printButton");
+        const TombolKembali = document.querySelector("#tombolKembali");
+
+        Navbar.setAttribute("hidden", "");
+        DataMenu.setAttribute("hidden", "");
+        PrintButton.setAttribute("hidden", "");
+        window.print();
+        TombolKembali.removeAttribute("hidden");
+    };
+
     const onDelete = (id) => {
         const keranjang = cart.filter((item) => item.id !== id);
         setCart(keranjang);
@@ -79,7 +92,9 @@ const Home = () => {
         <Kasir_Layout>
             <div className="flex flex-wrap justify-between w-full">
                 {/* Session Data menu list */}
-                <div className="xl:w-4/6 mb-10 rounded-xl overflow-hidden bg-slate-100">
+                <div
+                    id="dataMenu"
+                    className="xl:w-4/6 mb-10 rounded-xl overflow-hidden bg-slate-100">
                     {/* head session menu */}
                     <div className="flex items-center bg-yellow-300 px-2.5 py-1.5 mb-3">
                         <MdOutlineDataset className="text-3xl" />
@@ -158,8 +173,6 @@ const Home = () => {
                     </div>
                     {/* end head session keranjang */}
 
-                    
-
                     <div>
                         <div className="flex gap-2 px-1.5 items-center">
                             <FaShoppingCart className="text-lg" />
@@ -232,12 +245,15 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <button className="bg-blue-300 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-blue-400">
+                        <button
+                            onClick={print}
+                            id="printButton"
+                            className="bg-blue-300 ml-2 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-blue-400">
                             Cetak
                         </button>
-                        
+                        <button id="tombolKembali" onClick={() => location.reload()} hidden className="hover:cursor-pointer hover:text-red-500 hover:underline">Selesai &larr;</button>
                     </div>
-                </div>
+                </div> 
 
                 {/* end session keranjang */}
             </div>
