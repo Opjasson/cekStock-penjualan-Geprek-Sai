@@ -80,6 +80,10 @@ const Update_StockBahan = () => {
                        <option value="telor">Telor</option>
                        <option value="tempe">Tempe</option>
                        <option value="tahu">Tahu</option>
+                       <option value="tahu">Mie</option>
+                       <option value="tahu">Sledri</option>
+                       <option value="tahu">Kol</option>
+                       <option value="tahu">Air mineral</option>
                    </select>
                </div>
 
@@ -155,7 +159,10 @@ const Update_StockBahan = () => {
                        id="stokAkhir"
                        className="border rounded-xl p-1.5 md:p-2 bg-slate-300"
                        type="number"
-                       value={parseInt(stokAwal) + parseInt(barangMasuk - parseInt(barangKeluar))}
+                       value={
+                           parseInt(stokAwal) +
+                           parseInt(barangMasuk - parseInt(barangKeluar))
+                       }
                    />
                </div>
 
