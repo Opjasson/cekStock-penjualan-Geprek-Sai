@@ -65,17 +65,7 @@ const Stok_Bahan = () => {
                 </Link>
             </div>
 
-            <div className="mt-7 border-b-2 border-blue-500 pb-16">
-                <div className="flex justify-between px-5 py-3 bg-yellow-300 text-black rounded-xl lg:text-lg text-[12px] font-bold shadow-slate-500 shadow-md">
-                    <h2>No</h2>
-                    <h2 className="lg:ml-0 ml-1.5 lg:w-40">Nama barang</h2>
-                    <h2 className=" lg:w-32 w-fit lg:ml-0 mr-1.5">Satuan</h2>
-                    <h2 className=" lg:w-32 w-fit">Stock awal</h2>
-                    <h2 className=" lg:w-32 w-fit">Barang masuk</h2>
-                    <h2 className=" lg:w-32 w-fit">Barang keluar</h2>
-                    <h2 className=" lg:w-32 w-fit">Stock akhir</h2>
-                </div>
-
+            <div className="mt-7 border-b-2 border-green-500 pb-16 border-2 flex gap-5 flex-wrap">
                 {lengthData.length > 0 ? (
                     filterNama
                         .filter(
@@ -83,24 +73,31 @@ const Stok_Bahan = () => {
                         )
                         .map((item, index) => (
                             <div
-                                key={index}
+                            key={index}
                                 onClick={() =>
                                     navigate(
                                         `/stock-bahan/update-stockBahan/${item.id}`
                                     )
                                 }
-                                className="flex justify-between hover:cursor-pointer hover:bg-slate-300 lg:px-5 px-2 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 ">
-                                <h2 key={index + 1} className="">
-                                    {index + 1}
-                                </h2>
-                                <h2 className="ml-3 w-40 capitalize">
-                                    {item.nama_barang}
-                                </h2>
-                                <h2 className="w-32">{item.satuan}</h2>
-                                <h2 className="w-32">{item.stok_awal}</h2>
-                                <h2 className="w-32">{item.barang_masuk}</h2>
-                                <h2 className="w-32">{item.barang_keluar}</h2>
-                                <h2 className="w-32">{item.stok_akhir}</h2>
+                                class="block max-w-sm w-80 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 hover:cursor-pointer">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                    Nama barang : {item.nama_barang}
+                                </h5>
+                                <p class="font-normal text-gray-700 dark:text-gray-400">
+                                    Satuan : {item.satuan}
+                                </p>
+                                <p class="font-normal text-gray-700 dark:text-gray-400">
+                                    Stock awal : {item.stok_awal}
+                                </p>
+                                <p class="font-normal text-gray-700 dark:text-gray-400">
+                                    Barang masuk : {item.barang_masuk}
+                                </p>
+                                <p class="font-normal text-gray-700 dark:text-gray-400">
+                                    Barang keluar : {item.barang_keluar}
+                                </p>
+                                <p class="font-normal text-gray-700 dark:text-gray-400">
+                                    Stock akhir : {item.stok_akhir}
+                                </p>
                             </div>
                         ))
                 ) : (
