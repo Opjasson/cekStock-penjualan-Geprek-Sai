@@ -61,6 +61,10 @@ const Add_StockBahan = () => {
                       <option value="telor">Telor</option>
                       <option value="tempe">Tempe</option>
                       <option value="tahu">Tahu</option>
+                      <option value="tahu">Mie</option>
+                      <option value="tahu">Sledri</option>
+                      <option value="tahu">Kol</option>
+                      <option value="tahu">Air mineral</option>
                   </select>
               </div>
 
