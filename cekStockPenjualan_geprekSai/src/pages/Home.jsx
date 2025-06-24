@@ -5,7 +5,6 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
 const Home = () => {
     const [data, setData] = useState([]);
     const [cart, setCart] = useState([]);
@@ -55,13 +54,29 @@ const Home = () => {
         const DataMenu = document.querySelector("#dataMenu");
         const PrintButton = document.querySelector("#printButton");
         const TombolKembali = document.querySelector("#tombolKembali");
+        const TombolPrint = document.querySelector("#tombolPrint");
+        const listKeranjang = document.querySelector("#listKeranjang");
+        const sai = document.querySelector("#sai");
 
         Navbar.setAttribute("hidden", "");
+        listKeranjang.setAttribute("hidden", "");
+        sai.removeAttribute("hidden");
         DataMenu.setAttribute("hidden", "");
         PrintButton.setAttribute("hidden", "");
         window.print();
         TombolKembali.removeAttribute("hidden");
+        TombolPrint.removeAttribute("hidden");
     };
+
+    const print2 = () => {
+        const TombolKembali = document.querySelector("#tombolKembali");
+        const TombolPrint = document.querySelector("#tombolPrint");
+
+        TombolKembali.setAttribute("hidden", "");
+        TombolPrint.setAttribute("hidden", "");
+        window.print();
+        TombolKembali.removeAttribute("hidden");
+    }
 
     const onDelete = (id) => {
         const keranjang = cart.filter((item) => item.id !== id);
@@ -174,7 +189,12 @@ const Home = () => {
                     <div>
                         <div className="flex gap-2 px-1.5 items-center">
                             <FaShoppingCart className="text-lg" />
-                            <p className="text-sm">List Keranjang</p>
+                            <p id="listKeranjang" className="text-sm">
+                                List Keranjang
+                            </p>
+                            <p id="sai" hidden className="text-sm">
+                                Nota Geprek sa'i Mejasem
+                            </p>
                         </div>
 
                         <div className="border-b-2 border-slate-400 pb-5">
@@ -249,9 +269,23 @@ const Home = () => {
                             className="bg-blue-300 ml-2 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-blue-400">
                             Cetak
                         </button>
-                        <button id="tombolKembali" onClick={() => location.reload()} hidden className="hover:cursor-pointer hover:text-red-500 hover:underline">Selesai &larr;</button>
+                        <button
+                            id="tombolKembali"
+                            onClick={() => location.reload()}
+                            hidden
+                            className="ml-5 hover:cursor-pointer hover:text-red-500 hover:underline">
+                            Selesai &larr;
+                        </button>
+
+                        <button
+                            id="tombolPrint"
+                            onClick={print2}
+                            hidden
+                            className="ml-5 hover:cursor-pointer hover:text-red-500 hover:underline">
+                            Print &larr;
+                        </button>
                     </div>
-                </div> 
+                </div>
 
                 {/* end session keranjang */}
             </div>
