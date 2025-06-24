@@ -65,7 +65,7 @@ const Stok_Bahan = () => {
                 </Link>
             </div>
 
-            <div className="mt-7 border-b-2 border-green-500 pb-16 border-2 flex gap-5 flex-wrap">
+            <div className="mt-7 border-b-2 border-green-500 pb-16 flex gap-5 flex-wrap justify-center">
                 {lengthData.length > 0 ? (
                     filterNama
                         .filter(
