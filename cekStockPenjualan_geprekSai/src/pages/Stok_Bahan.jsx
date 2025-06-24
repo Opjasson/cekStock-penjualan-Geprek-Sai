@@ -83,19 +83,19 @@ const Stok_Bahan = () => {
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                     Nama barang : {item.nama_barang}
                                 </h5>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">
+                                <p class="font-normal text-red-700 dark:text-blue-600">
                                     Satuan : {item.satuan}
                                 </p>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">
+                                <p class="font-normal text-red-700 dark:text-blue-600">
                                     Stock awal : {item.stok_awal}
                                 </p>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">
+                                <p class="font-normal text-red-700 dark:text-blue-600">
                                     Barang masuk : {item.barang_masuk}
                                 </p>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">
+                                <p class="font-normal text-red-700 dark:text-blue-600">
                                     Barang keluar : {item.barang_keluar}
                                 </p>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">
+                                <p class="font-normal text-red-700 dark:text-blue-600">
                                     Stock akhir : {item.stok_akhir}
                                 </p>
                             </div>
