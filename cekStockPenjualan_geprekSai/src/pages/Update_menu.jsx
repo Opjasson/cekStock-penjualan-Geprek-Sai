@@ -8,7 +8,6 @@ const Update_menu = () => {
     const [kategori, setKategori] = useState("");
     const [harga, setHarga] = useState(0);
     const [img, setImg] = useState("");
-    
 
     const { id } = useParams();
 
@@ -67,6 +66,17 @@ const Update_menu = () => {
                 img,
             });
             alert("Menu berhasil dirubah!");
+            navigate("/manage-menu");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleDeleteMenu = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.delete(`http://localhost:8000/menu/${id}`);
+            alert("Menu berhasil dihapus!");
             navigate("/manage-menu");
         } catch (error) {
             console.log(error);
@@ -145,7 +155,13 @@ const Update_menu = () => {
                 <button
                     type="submit"
                     className="bg-blue-500 w-1/4 mx-auto px-3 py-2 hover:cursor-pointer hover:bg-blue-600 rounded-xl text-white font-extrabold">
-                    Buat
+                    Ubah
+                </button>
+                <button
+                    onClick={handleDeleteMenu}
+                    type="button"
+                    className="bg-red-500 w-1/4 mx-auto px-3 py-2 hover:cursor-pointer hover:bg-red-600 rounded-xl text-white font-extrabold">
+                    Delete
                 </button>
             </form>
             {/* Form End */}
