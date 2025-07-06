@@ -3,7 +3,7 @@ import { Sequelize } from "sequelize";
 
 const { DataTypes } = Sequelize;
 
-const stokBahan_Model = db.define("data_stock", {
+const stokBahan_Model = db.define("stok_Bahan_Baku", {
     nama_barang: {
         type: DataTypes.STRING,
         allowNull: false,

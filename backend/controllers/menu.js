@@ -10,22 +10,16 @@ export const createMenu = async (req, res) => {
             kategori,
             img,
         });
-        res.status(201).json({msg : "Data berhasil ditambahkan"})
+        res.status(201).json({ msg: "Data berhasil ditambahkan" });
     } catch (error) {
-        res.status(400).json({msg : error.message})
+        res.status(400).json({ msg: error.message });
     }
 };
 
 export const getMenus = async (req, res) => {
     try {
         const response = await menuModel.findAll({
-            attributes: [
-                "id",
-                "nama_menu",
-                "harga",
-                "kategori",
-                "img",
-            ],
+            attributes: ["id", "nama_menu", "harga", "kategori", "img"],
         });
         res.status(201).json(response);
     } catch (error) {
@@ -37,15 +31,9 @@ export const getMenuById = async (req, res) => {
     try {
         const response = await menuModel.findOne({
             where: {
-                id : req.params.id
+                id: req.params.id,
             },
-            attributes: [
-                "id",
-                "nama_menu",
-                "harga",
-                "kategori",
-                "img",
-            ],
+            attributes: ["id", "nama_menu", "harga", "kategori", "img"],
         });
         res.status(201).json(response);
     } catch (error) {
@@ -77,5 +65,18 @@ export const updateData_Menu = async (req, res) => {
         res.status(200).json({ msg: "data berhasil dirubah!" });
     } catch (error) {
         res.status(404).json({ msg: error.message });
+    }
+};
+
+export const deleteMenu = async (req, res) => {
+    try {
+        menuModel.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+        res.status(200).json({msg : "data berhasil dihapus!"})
+    } catch (error) {
+        res.status(404).json({msg : error.message})
     }
 };
