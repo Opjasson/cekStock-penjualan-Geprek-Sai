@@ -25,28 +25,30 @@ const Forgot_Pass = () => {
               {/* Form */}
               <form className="mt-10">
                   <h2 className="text-center text-lg font-semibold mb-6">
-                      Login Member
+                      Lupa Password
                   </h2>
 
                   <input
                       type="text"
-                      placeholder="Username"
+                      placeholder="Email"
                       className="w-full px-4 py-2 mb-4 border rounded bg-gray-100 placeholder-gray-500"
                   />
                   <input
                       type="password"
-                      placeholder="Password"
+                      placeholder="New Password"
+                      className="w-full px-4 py-2 mb-4 border rounded bg-gray-100 placeholder-gray-500"
+                  />
+
+                  <input
+                      type="password"
+                      placeholder="Ulangi Password"
                       className="w-full px-4 py-2 mb-4 border rounded bg-gray-100 placeholder-gray-500"
                   />
                   <button
                       type="submit"
-                      className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
-                      LOGIN
+                      className="w-full hover:cursor-pointer bg-green-600 text-white py-2 rounded hover:bg-green-700">
+                      UBAH
                   </button>
-
-                  <p className="text-center text-sm text-gray-500 mt-4">
-                      Forgot Password ?
-                  </p>
               </form>
           </div>
       </div>

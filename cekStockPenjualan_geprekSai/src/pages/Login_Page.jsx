@@ -42,13 +42,13 @@ const Login_Page = () => {
                     />
                     <button
                         type="submit"
-                        className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
+                        className="w-full hover:cursor-pointer bg-green-600 text-white py-2 rounded hover:bg-green-700">
                         LOGIN
                     </button>
 
                     <p
-                        className="text-center text-sm text-gray-500 mt-4" onClick={() => navigate("/register")}
-                        >
+                        className="text-center text-sm text-gray-500 mt-4 hover:cursor-pointer hover:underline"
+                        onClick={() => navigate("/forgot-pass")}>
                         Buat Akun
                     </p>
                 </form>

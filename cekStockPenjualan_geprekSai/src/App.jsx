@@ -7,7 +7,7 @@ import Stok_Bahan from "./pages/Stok_Bahan";
 import Add_StockBahan from "./pages/Add_StockBahan";
 import Update_StockBahan from "./pages/Update_StockBahan";
 import Login_Page from "./pages/Login_Page"; 
-import Register_Page from "./pages/Forgot_Pass";
+import Forgot_Pass from "./pages/Forgot_Pass";
 
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login_Page />} />
-                    <Route path="/register" element={<Register_Page />} />
+                    <Route path="/forgot-pass" element={<Forgot_Pass />} />
                     <Route path="/manage-menu" element={<Manage_menu />} />
                     <Route path="/manage-menu/add-menu" element={<Add_menu />} />
                     <Route path="/manage-menu/update-menu/:id" element={<Update_menu />} />

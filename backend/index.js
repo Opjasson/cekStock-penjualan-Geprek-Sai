@@ -3,15 +3,16 @@ import cors from "cors";
 import dotenv from "dotenv";
 import menuRoute from "./routes/menuRoutes.js";
 import stockBahanRoute from "./routes/stokBahanRoutes.js";
+import stokBahan_Model from "./models/stokBahanModel.js";
 
 
 dotenv.config();
 const app = express();
 
 // -- sikronasi tabel otomatis
-// (async () => {
-//     await menu.sync();
-// })();
+(async () => {
+    await stokBahan_Model.sync();
+})();
 
 app.use(cors());
 app.use(express.json());
