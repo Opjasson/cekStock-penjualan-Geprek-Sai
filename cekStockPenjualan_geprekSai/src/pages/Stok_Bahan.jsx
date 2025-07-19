@@ -73,29 +73,29 @@ const Stok_Bahan = () => {
                         )
                         .map((item, index) => (
                             <div
-                            key={index}
+                                key={index}
                                 onClick={() =>
                                     navigate(
                                         `/stock-bahan/update-stockBahan/${item.id}`
                                     )
                                 }
-                                class="block max-w-sm w-80 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 hover:cursor-pointer">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                class="block max-w-sm w-80 p-6 rounded-lg shadow-sm  bg-gray-800 border-gray-700 hover:bg-gray-700 hover:cursor-pointer">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight  text-white">
                                     Nama barang : {item.nama_barang}
                                 </h5>
-                                <p class="font-normal text-red-700 dark:text-blue-600">
+                                <p class="font-normal text-blue-600">
                                     Satuan : {item.satuan}
                                 </p>
-                                <p class="font-normal text-red-700 dark:text-blue-600">
+                                <p class="font-normal text-blue-600">
                                     Stock awal : {item.stok_awal}
                                 </p>
-                                <p class="font-normal text-red-700 dark:text-blue-600">
+                                <p class="font-normal text-blue-600">
                                     Barang masuk : {item.barang_masuk}
                                 </p>
-                                <p class="font-normal text-red-700 dark:text-blue-600">
+                                <p class="font-normal text-blue-600">
                                     Barang keluar : {item.barang_keluar}
                                 </p>
-                                <p class="font-normal text-red-700 dark:text-blue-600">
+                                <p class="font-normal text-blue-600">
                                     Stock akhir : {item.stok_akhir}
                                 </p>
                             </div>

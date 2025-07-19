@@ -69,7 +69,7 @@ const Update_StockBahan = () => {
                    </label>
                    <select
                        onChange={(e) => setNamaBarang(e.target.value)}
-                       className="border md:p-2 p-1.5 rounded-xl">
+                       className="border md:p-2 p-1.5 rounded-xl bg-green-300">
                        <option value={namabarang}>{namabarang}</option>
                        <option value="tepung terigu">Tepung Terigu</option>
                        <option value="kecap bango">Kecap Bango</option>
@@ -93,7 +93,7 @@ const Update_StockBahan = () => {
                    </label>
                    <input
                        id="satuan"
-                       className="border rounded-xl p-1.5 md:p-2"
+                       className="border rounded-xl p-1.5 md:p-2 bg-green-300"
                        type="text"
                        value={satuan}
                        required
@@ -107,7 +107,7 @@ const Update_StockBahan = () => {
                    </label>
                    <input
                        id="namaStock"
-                       className="border rounded-xl p-1.5 md:p-2"
+                       className="border rounded-xl p-1.5 md:p-2 bg-green-300"
                        type="number"
                        value={stokAwal}
                        required
@@ -123,7 +123,7 @@ const Update_StockBahan = () => {
                    </label>
                    <input
                        id="barangMasuk"
-                       className="border rounded-xl p-1.5 md:p-2"
+                       className="border rounded-xl p-1.5 md:p-2 bg-green-300"
                        type="number"
                        value={barangMasuk}
                        required
@@ -139,7 +139,7 @@ const Update_StockBahan = () => {
                    </label>
                    <input
                        id="barangKeluar"
-                       className="border rounded-xl p-1.5 md:p-2"
+                       className="border rounded-xl p-1.5 md:p-2 bg-green-300"
                        type="number"
                        value={barangKeluar}
                        required
@@ -168,7 +168,7 @@ const Update_StockBahan = () => {
 
                <button
                    type="submit"
-                   className="bg-blue-500 w-1/4 mx-auto px-3 py-2 hover:cursor-pointer hover:bg-blue-600 rounded-xl text-white font-extrabold">
+                   className="bg-green-500 w-1/4 mx-auto px-3 py-2 hover:cursor-pointer hover:bg-green-600 rounded-xl text-white font-extrabold">
                    Buat
                </button>
            </form>

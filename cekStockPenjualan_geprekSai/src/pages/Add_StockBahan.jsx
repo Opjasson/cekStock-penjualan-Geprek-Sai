@@ -50,7 +50,7 @@ const Add_StockBahan = () => {
                   <select
                       onChange={(e) => setNamaBarang(e.target.value)}
                       id="namaStock"
-                      className="border md:p-2 p-1.5 rounded-xl">
+                      className="border md:p-2 p-1.5 rounded-xl bg-green-300">
                       <option value="pilih">Pilih bahan baku</option>
                       <option value="tepung terigu">Tepung Terigu</option>
                       <option value="kecap bango">Kecap Bango</option>
@@ -74,7 +74,7 @@ const Add_StockBahan = () => {
                   </label>
                   <input
                       id="satuan"
-                      className="border rounded-xl p-1.5 md:p-2"
+                      className="border rounded-xl p-1.5 md:p-2 bg-green-300"
                       type="text"
                       required
                       onChange={(e) => setSatuan(e.target.value)}
@@ -87,7 +87,7 @@ const Add_StockBahan = () => {
                   </label>
                   <input
                       id="namaStock"
-                      className="border rounded-xl p-1.5 md:p-2"
+                      className="border rounded-xl p-1.5 md:p-2 bg-green-300"
                       type="number"
                       required
                       onChange={(e) => setStokAwal(e.target.value)}

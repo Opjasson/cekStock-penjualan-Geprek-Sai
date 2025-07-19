@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 const Forgot_Pass = () => {
     const [email, setEmail] = useState("");
@@ -7,6 +8,7 @@ const Forgot_Pass = () => {
     const [confPassword, setConfPassword] = useState("");
     const [error, setError] = useState("");
 
+    const navigate = useNavigate()
     const handleForgotPass = async (e) => {
         e.preventDefault()
         try {
@@ -16,6 +18,7 @@ const Forgot_Pass = () => {
                 confPassword,
             });
             alert("Password berhasil dirubah!");
+            navigate("/login")
         } catch (error) {            
             setError(error.response.data.message);            
         }

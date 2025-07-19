@@ -1,8 +1,27 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login_Page = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [invalid, setInvalid] = useState("");
+
     const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post("http://localhost:8000/login", {
+                email,
+                password,
+            });
+            navigate("/");
+        } catch (error) {            
+            setInvalid(error.response.data.message);
+        }
+    };
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-yellow-300">
             <div className="bg-white rounded shadow-md p-8 w-full max-w-sm relative">
@@ -25,7 +44,7 @@ const Login_Page = () => {
                 </div>
 
                 {/* Form */}
-                <form className="mt-10">
+                <form className="mt-10" onSubmit={handleSubmit}>
                     <h2 className="text-center text-lg font-semibold mb-6">
                         Login Member
                     </h2>
@@ -33,13 +52,20 @@ const Login_Page = () => {
                     <input
                         type="text"
                         placeholder="Email"
+                        onChange={(e) => setEmail(e.target.value)}
                         className="w-full px-4 py-2 mb-4 border rounded bg-gray-100 placeholder-gray-500"
                     />
                     <input
                         type="password"
                         placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
                         className="w-full px-4 py-2 mb-4 border rounded bg-gray-100 placeholder-gray-500"
                     />
+
+                    <p className="text-lg text-red-500 text-center">
+                        {invalid}
+                    </p>
+
                     <button
                         type="submit"
                         className="w-full hover:cursor-pointer bg-green-600 text-white py-2 rounded hover:bg-green-700">
@@ -49,7 +75,7 @@ const Login_Page = () => {
                     <p
                         className="text-center text-sm text-gray-500 mt-4 hover:cursor-pointer hover:underline"
                         onClick={() => navigate("/forgot-pass")}>
-                        Buat Akun
+                        Lupa Password
                     </p>
                 </form>
             </div>
