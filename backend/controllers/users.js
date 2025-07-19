@@ -1,4 +1,4 @@
-import Users from "../models/usersModels.js";
+import Users from "../models/usersModel.js";
 import argon2 from "argon2";
 
 export const getUsers = async (req, res) => {
@@ -26,7 +26,7 @@ export const getUserById = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-    const { email, password, confPassword } = req.body;
+    const { email, role, password, confPassword } = req.body;
 
     if (password !== confPassword) {
         return res
@@ -38,6 +38,7 @@ export const createUser = async (req, res) => {
     try {
         await Users.create({
             email,
+            role,
             password: HashPassword,
         });
         res.status(201).json({ msg: "Register berhasil" });

@@ -5,14 +5,14 @@ import menuRoute from "./routes/menuRoutes.js";
 import stockBahanRoute from "./routes/stokBahanRoutes.js";
 import stokBahan_Model from "./models/stokBahanModel.js";
 import userRoutes from "./routes/userRoutes.js"
-
+import Users from "./models/usersModel.js";
 
 dotenv.config();
 const app = express();
 
 // -- sikronasi tabel otomatis
 // (async () => {
-//     await stokBahan_Model.sync();
+//     await Users.sync();
 // })();
 
 app.use(cors());
