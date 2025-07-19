@@ -124,7 +124,7 @@ const Add_menu = () => {
 
                 <button
                     type="submit"
-                    className="bg-blue-500 w-1/4 mx-auto px-3 py-2 hover:cursor-pointer hover:bg-blue-600 rounded-xl text-white font-extrabold">
+                    className="bg-green-500 w-1/4 mx-auto px-3 py-2 hover:cursor-pointer hover:bg-green-600 rounded-xl text-white font-extrabold">
                     Buat
                 </button>
             </form>
