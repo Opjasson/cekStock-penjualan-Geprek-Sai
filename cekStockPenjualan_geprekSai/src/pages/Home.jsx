@@ -206,11 +206,11 @@ const Home = () => {
                                 <h2 className="px-1">#</h2>
                             </div>
 
-                            {cart.map((item) => (
+                            {cart.map((item, index) => (
                                 <div
                                     className="flex justify-between hover:bg-slate-300 px-2 py-3 text-sm font-extralight border border-slate-400"
                                     key={item.id}>
-                                    <h2 className="pr-4.5 ">{item.id}</h2>
+                                    <h2 className="pr-4.5 ">{index + 1}</h2>
                                     <h2 className="w-32 ">{item.nama}</h2>
                                     <h2 className="w-32">{item.qty}</h2>
                                     <h2 className="w-32 ">
