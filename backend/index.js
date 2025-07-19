@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import menuRoute from "./routes/menuRoutes.js";
 import stockBahanRoute from "./routes/stokBahanRoutes.js";
 import stokBahan_Model from "./models/stokBahanModel.js";
+import userRoutes from "./routes/userRoutes.js"
 
 
 dotenv.config();
@@ -19,6 +20,7 @@ app.use(express.json());
 
 app.use(menuRoute);
 app.use(stockBahanRoute);
+app.use(userRoutes);
 
 app.listen(process.env.PORT, (error) => {
     if (error) {
