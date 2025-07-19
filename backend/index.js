@@ -3,8 +3,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import menuRoute from "./routes/menuRoutes.js";
 import stockBahanRoute from "./routes/stokBahanRoutes.js";
-import stokBahan_Model from "./models/stokBahanModel.js";
 import userRoutes from "./routes/userRoutes.js"
+import authRoutes from "./routes/authRoute.js"
+import stokBahan_Model from "./models/stokBahanModel.js";
 import Users from "./models/usersModel.js";
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use(menuRoute);
 app.use(stockBahanRoute);
 app.use(userRoutes);
+app.use(authRoutes);
 
 app.listen(process.env.PORT, (error) => {
     if (error) {
