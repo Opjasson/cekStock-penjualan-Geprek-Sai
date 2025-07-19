@@ -27,7 +27,7 @@ export const forgotPassword = async (req, res) => {
     if (password !== confPassword) {
         return res
             .status(400)
-            .json({ msg: "Password dan Confirm Password tidak cocok" });
+            .json({ message: "Password dan Confirm Password tidak cocok" });
     }
 
     const HashPassword = await argon2.hash(password);
