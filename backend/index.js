@@ -10,9 +10,9 @@ dotenv.config();
 const app = express();
 
 // -- sikronasi tabel otomatis
-(async () => {
-    await stokBahan_Model.sync();
-})();
+// (async () => {
+//     await stokBahan_Model.sync();
+// })();
 
 app.use(cors());
 app.use(express.json());
