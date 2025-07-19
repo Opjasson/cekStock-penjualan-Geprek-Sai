@@ -6,8 +6,9 @@ import Update_menu from "./pages/Update_menu";
 import Stok_Bahan from "./pages/Stok_Bahan";
 import Add_StockBahan from "./pages/Add_StockBahan";
 import Update_StockBahan from "./pages/Update_StockBahan";
-import Login_Page from "./pages/Login_Page";
-import Register_Page from "./pages/Register_Page";
+import Login_Page from "./pages/Login_Page"; 
+import Register_Page from "./pages/Forgot_Pass";
+
 
 function App() {
 

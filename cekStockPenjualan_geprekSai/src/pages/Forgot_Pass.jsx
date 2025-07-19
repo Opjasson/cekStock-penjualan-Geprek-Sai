@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Register_Page = () => {
+const Forgot_Pass = () => {
   return (
       <div className="min-h-screen flex items-center justify-center bg-yellow-300">
           <div className="bg-white rounded shadow-md p-8 w-full max-w-sm relative">
@@ -53,4 +53,4 @@ const Register_Page = () => {
   );
 }
 
-export default Register_Page
+export default Forgot_Pass
