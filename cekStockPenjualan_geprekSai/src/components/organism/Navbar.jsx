@@ -49,17 +49,25 @@ const Navbar = () => {
                             Kasir
                         </Link>
                     </li>
-                    <FaArrowRight onClick={handleKasirDropDown} className="cursor-pointer hover:rotate-90 delay-200" />
+                    <FaArrowRight
+                        onClick={handleKasirDropDown}
+                        className="cursor-pointer hover:rotate-90 delay-200"
+                    />
                     <div
                         id="dropDownMenu"
                         hidden
                         className="border absolute top-8 left-10 w-48 bg-slate-300 px-2 rounded-xl">
-                        
                         <li>
-                            <a href="/manage-menu" className="hover:text-yellow-300">History transaksi</a>
+                            <a
+                                href="/history-transaksi"
+                                className="hover:text-yellow-300">
+                                History transaksi
+                            </a>
                         </li>
                         <li>
-                            <a href="" className="hover:text-yellow-300">Laporan</a>
+                            <a href="" className="hover:text-yellow-300">
+                                Laporan
+                            </a>
                         </li>
                     </div>
                 </div>

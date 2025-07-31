@@ -8,6 +8,7 @@ import Add_StockBahan from "./pages/Add_StockBahan";
 import Update_StockBahan from "./pages/Update_StockBahan";
 import Login_Page from "./pages/Login_Page"; 
 import Forgot_Pass from "./pages/Forgot_Pass";
+import History_transaksi from "./pages/History_transaksi";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/stock-bahan" element={<Stok_Bahan />} />
                     <Route path="/stock-bahan/add-stockBahan" element={<Add_StockBahan />} />
                     <Route path="/stock-bahan/update-stockBahan/:id" element={<Update_StockBahan />} />
+                    <Route path="/history-transaksi" element={<History_transaksi />} />
                 </Routes>
             </BrowserRouter>
         </>
