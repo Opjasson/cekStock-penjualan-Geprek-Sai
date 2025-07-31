@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { logoSai } from "../../assets";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { FaArrowRight } from "react-icons/fa";
 
 const Navbar = () => {
     const handleDropDown = () => {
@@ -18,6 +19,19 @@ const Navbar = () => {
         }
     };
 
+    const handleKasirDropDown = () => {
+        const getElement = document.querySelector("#dropDownMenu");
+        switch (getElement.hasAttribute("hidden")) {
+            case true:
+                getElement.removeAttribute("hidden");
+                break;
+            case false:
+                getElement.setAttribute("hidden", "");
+                break;
+            default:
+                break;
+        }
+    };
 
     return (
         <nav className=" bg-red-600 lg:px-6 px-4 pt-1.5 flex justify-between items-center mb-5">
@@ -29,14 +43,35 @@ const Navbar = () => {
             </div>
 
             <div className="lg:flex hidden list-none text-xl justify-between w-1/2  text-white font-bold">
+                <div className="flex items-center gap-1.5 relative">
+                    <li>
+                        <Link to={"/"} className="hover:text-yellow-300">
+                            Kasir
+                        </Link>
+                    </li>
+                    <FaArrowRight onClick={handleKasirDropDown} className="cursor-pointer hover:rotate-90 delay-200" />
+                    <div
+                        id="dropDownMenu"
+                        hidden
+                        className="border absolute top-8 left-10 w-48 bg-slate-300 px-2 rounded-xl">
+                        
+                        <li>
+                            <a href="/manage-menu" className="hover:text-yellow-300">History transaksi</a>
+                        </li>
+                        <li>
+                            <a href="" className="hover:text-yellow-300">Laporan</a>
+                        </li>
+                    </div>
+                </div>
                 <li>
-                    <Link to={"/"} className="hover:text-yellow-300">Kasir</Link>
+                    <Link to={"/manage-menu"} className="hover:text-yellow-300">
+                        Manage Menu
+                    </Link>
                 </li>
                 <li>
-                    <Link to={"/manage-menu"} className="hover:text-yellow-300">Manage Menu</Link>
-                </li>
-                <li>
-                    <Link to={"/stock-bahan"} className="hover:text-yellow-300">Stok Bahan</Link>
+                    <Link to={"/stock-bahan"} className="hover:text-yellow-300">
+                        Stok Bahan
+                    </Link>
                 </li>
             </div>
 
