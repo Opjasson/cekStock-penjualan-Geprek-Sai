@@ -5,7 +5,6 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
 const Home = () => {
     const [data, setData] = useState([]);
     const [cart, setCart] = useState([]);
@@ -50,6 +49,16 @@ const Home = () => {
         }
     };
 
+    const handleCreateTransaksi = async () => {
+        cart.forEach(async (item) => {
+            await axios.post("http://localhost:8000/cart", {
+                qty: item.qty,
+                menuId: item.id,
+                transaksiId: 1,
+            });
+        });
+    };
+
     const print = () => {
         const Navbar = document.querySelector("nav");
         const DataMenu = document.querySelector("#dataMenu");
@@ -70,6 +79,7 @@ const Home = () => {
         sai.removeAttribute("hidden");
         DataMenu.setAttribute("hidden", "");
         PrintButton.setAttribute("hidden", "");
+        handleCreateTransaksi();
         window.print();
         TombolKembali.removeAttribute("hidden");
         TombolPrint.removeAttribute("hidden");
@@ -83,7 +93,7 @@ const Home = () => {
         TombolPrint.setAttribute("hidden", "");
         window.print();
         TombolKembali.removeAttribute("hidden");
-    }
+    };
 
     const onDelete = (id) => {
         const keranjang = cart.filter((item) => item.id !== id);
@@ -284,6 +294,7 @@ const Home = () => {
                             className="bg-blue-300 ml-2 px-1.5 py-1 rounded-md hover:cursor-pointer hover:bg-blue-400">
                             Cetak
                         </button>
+
                         <button
                             id="tombolKembali"
                             onClick={() => location.reload()}

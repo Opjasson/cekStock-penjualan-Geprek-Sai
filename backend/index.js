@@ -8,7 +8,7 @@ import authRoutes from "./routes/authRoute.js"
 import transaksi_Route from "./routes/transaksiRoute.js";
 import cart_Route from "./routes/cartRoute.js";
 import stokBahan_Model from "./models/stokBahanModel.js";
-import Users from "./models/cartModel.js";
+import Users from "./models/transaksiModel.js";
 
 dotenv.config();
 const app = express();
