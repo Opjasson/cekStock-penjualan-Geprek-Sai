@@ -5,6 +5,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 const Home = () => {
     const [data, setData] = useState([]);
     const [cart, setCart] = useState([]);
@@ -57,9 +58,15 @@ const Home = () => {
         const TombolPrint = document.querySelector("#tombolPrint");
         const listKeranjang = document.querySelector("#listKeranjang");
         const sai = document.querySelector("#sai");
+        const icon = document.querySelector("#icon");
+        const icon2 = document.querySelector("#icon2");
+        const headNota = document.querySelector("#headNota");
 
         Navbar.setAttribute("hidden", "");
         listKeranjang.setAttribute("hidden", "");
+        icon.setAttribute("hidden", "");
+        icon2.setAttribute("hidden", "");
+        headNota.setAttribute("hidden", "");
         sai.removeAttribute("hidden");
         DataMenu.setAttribute("hidden", "");
         PrintButton.setAttribute("hidden", "");
@@ -180,25 +187,33 @@ const Home = () => {
                 {/* session keranjang */}
                 <div className="w-[24.9rem] rounded-xl overflow-hidden bg-slate-100 h-fit pb-10 xl:mx-0 mx-auto">
                     {/* head session keranjang */}
-                    <div className="flex items-center bg-yellow-300 px-2.5 py-1.5 mb-3 gap-1.5">
-                        <FaShoppingCart className="text-2xl" />
+                    <div
+                        id="headNota"
+                        className="flex items-center bg-yellow-300 px-2.5 py-1.5 mb-3 gap-1.5">
+                        <FaShoppingCart id="icon" className="text-2xl" />
                         <h1 className="text-xl">Keranjang</h1>
                     </div>
                     {/* end head session keranjang */}
 
                     <div>
-                        <div className="flex gap-2 px-1.5 items-center">
-                            <FaShoppingCart className="text-lg" />
+                        <div className="flex gap-2 px-1.5 items-center border-b-2">
+                            <FaShoppingCart id="icon2" className="text-lg" />
                             <p id="listKeranjang" className="text-sm">
                                 List Keranjang
                             </p>
-                            <p id="sai" hidden className="text-sm">
-                                Nota Geprek sa'i Mejasem
-                            </p>
+                            <div className="flex-col" id="sai" hidden>
+                                <p>
+                                    Tanggal Pesan :{" "}
+                                    {new Date().toLocaleDateString()}
+                                </p>
+                                <p className="text-sm">
+                                    Nota Geprek sa'i Mejasem
+                                </p>
+                            </div>
                         </div>
 
                         <div className="border-b-2 border-slate-400 pb-5">
-                            <div className="flex justify-between hover:bg-slate-300 px-2 py-1.5 text-sm font-extralight mt-2 border border-slate-400">
+                            <div className="flex justify-between hover:bg-slate-300 px-2 py-1.5 text-sm font-extralight mt-2 border-b-2">
                                 <h2 className="pr-2">No</h2>
                                 <h2 className="w-32">Nama</h2>
                                 <h2 className="w-32">Qty</h2>
