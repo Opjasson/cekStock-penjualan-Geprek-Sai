@@ -18,7 +18,7 @@ export const getAllTransaksi = async (req, res) => {
             include: [
                 {
                     model: cartModel,
-                    attributes: ["barangId", "transaksiId", "qty"],
+                    attributes: ["menuId", "transaksiId", "qty"],
                 },
             ],
         });
@@ -37,7 +37,7 @@ export const getTransaksiByUuid = async (req, res) => {
             include: [
                 {
                     model: cartModel,
-                    attributes: ["barangId", "transaksiId", "qty"],
+                    attributes: ["menuId", "transaksiId", "qty"],
                 },
             ],
         });

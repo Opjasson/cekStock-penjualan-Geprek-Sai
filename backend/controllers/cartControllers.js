@@ -2,11 +2,11 @@ import cartModel from "../models/cartModel.js";
 
 export const addCart = async (req, res) => {
     try {
-        const { qty, barangId, transaksiId } = req.body;
+        const { qty, menuId, transaksiId } = req.body;
 
         await cartModel.create({
             qty,
-            barangId,
+            menuId,
             transaksiId,
         });
         res.status(200).json({ msg: "Data berhasil dibuat!" });
@@ -18,7 +18,7 @@ export const addCart = async (req, res) => {
 export const getCartAll = async (req, res) => {
     try {
         const response = await cartModel.findAll({
-            attributes: ["barangId", "transaksiId", "qty", "createdAt"],
+            attributes: ["menuId", "transaksiId", "qty", "createdAt"],
         });
         res.status(200).json({ response });
     } catch (error) {
