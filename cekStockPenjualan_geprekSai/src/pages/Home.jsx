@@ -4,6 +4,7 @@ import { MdOutlineDataset } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaPlusSquare } from "react-icons/fa";
 
 const Home = () => {
     const [data, setData] = useState([]);
@@ -49,12 +50,25 @@ const Home = () => {
         }
     };
 
+
     const handleCreateTransaksi = async () => {
+        const response = await axios.post("http://localhost:8000/transaksi");
+        const idTransaksi = response.data.response.id;
+    
+        // localStorage.setItem("transId", jsonRes.response.id);
+        await axios.patch(
+            `http://localhost:8000/transaksi/${idTransaksi}`,
+            {
+                // bayarPelanggan : bayar,
+                totalHarga: totalPrice,
+            }
+        );
+
         cart.forEach(async (item) => {
             await axios.post("http://localhost:8000/cart", {
                 qty: item.qty,
                 menuId: item.id,
-                transaksiId: 1,
+                transaksiId: idTransaksi,
             });
         });
     };
@@ -79,6 +93,7 @@ const Home = () => {
         sai.removeAttribute("hidden");
         DataMenu.setAttribute("hidden", "");
         PrintButton.setAttribute("hidden", "");
+        // updateTransaksi()
         handleCreateTransaksi();
         window.print();
         TombolKembali.removeAttribute("hidden");
@@ -132,17 +147,20 @@ const Home = () => {
                     </div>
                     {/* end head */}
 
-                    {/* filter menu */}
-                    <select
-                        name="filter"
-                        id="filter"
-                        onChange={(e) => setFilter(e.target.value)}
-                        className="ml-3 w-56 py-2 bg-green-600 rounded-lg text-white">
-                        <option value="">Semua kategori</option>
-                        <option value="minuman">Minuman</option>
-                        <option value="makanan">Makanan</option>
-                    </select>
-                    {/* end filter menu */}
+                    <div className="flex">
+                        {/* filter menu */}
+                        <select
+                            name="filter"
+                            id="filter"
+                            onChange={(e) => setFilter(e.target.value)}
+                            className="ml-3 w-56 py-2 bg-green-600 rounded-lg text-white">
+                            <option value="">Semua kategori</option>
+                            <option value="minuman">Minuman</option>
+                            <option value="makanan">Makanan</option>
+                        </select>
+                        {/* end filter menu */}
+
+                    </div>
 
                     {/* Show all menu */}
                     <div className="flex flex-wrap justify-around mt-12 relative">

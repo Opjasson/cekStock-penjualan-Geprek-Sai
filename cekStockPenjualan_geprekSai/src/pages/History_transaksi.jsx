@@ -48,33 +48,42 @@ useEffect(() => {
                 </p>
             </div>
 
-            {historyTransaksi.map((item, index) => (
-                <div
-                    key={index}
-                    class="block w-2/4 p-6 rounded-lg shadow-sm  bg-gray-800 border-gray-700 hover:bg-gray-700 hover:cursor-pointer">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight  text-white">
-                        History Transaksi :
-                    </h5>
+            <div className="flex justify-between px-16 bg-slate-100 p-5 rounded-xl flex-wrap">
+                {historyTransaksi.map((item, index) => (
+                    <div
+                        key={index}
+                        class="block w-2/5 p-6 rounded-lg shadow-sm  bg-gray-800 border-gray-700 hover:bg-gray-700 hover:cursor-pointer mb-5">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight  text-white">
+                            History Transaksi :
+                        </h5>
 
-                    <p class="font-normal text-blue-600">
-                        Tanggal Pemesanan : {item.createdAt.split("T")[0]}
-                    </p>
-
-                    <p class="font-normal text-blue-600">
-                        Id Pesanan : {item.uuid}
-                    </p>
-
-                    <p class="font-normal text-blue-600">Daftar Pesanan :</p>
-                    {item.carts.map((a, index) => (
-                        <p className="text-white" key={index}>
-                            {barang.find((b) => b.id === a.menuId)?.nama_menu} x{" "}
-                            {a.qty} :{" "}
-                            {barang.find((b) => b.id === a.menuId)?.harga}
+                        <p class="font-normal text-blue-600">
+                            Tanggal Pemesanan : {item.createdAt.split("T")[0]}
                         </p>
-                    ))}
-                    <p class="font-normal text-blue-600">Total Harga : {item.totalHarga}</p>
-                </div>
-            ))}
+
+                        <p class="font-normal text-blue-600">
+                            Id Pesanan : {item.uuid}
+                        </p>
+
+                        <p class="font-normal text-blue-600">
+                            Daftar Pesanan :
+                        </p>
+                        {item.carts.map((a, index) => (
+                            <p className="text-white" key={index}>
+                                {
+                                    barang.find((b) => b.id === a.menuId)
+                                        ?.nama_menu
+                                }{" "}
+                                x {a.qty} :{" "}
+                                {barang.find((b) => b.id === a.menuId)?.harga}
+                            </p>
+                        ))}
+                        <p class="font-normal text-blue-600">
+                            Total Harga : {item.totalHarga}
+                        </p>
+                    </div>
+                ))}
+            </div>
         </Kasir_Layout>
     );
 };
