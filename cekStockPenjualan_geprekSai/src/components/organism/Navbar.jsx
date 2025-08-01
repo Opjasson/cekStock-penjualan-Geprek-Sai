@@ -65,7 +65,7 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li>
-                            <a href="" className="hover:text-yellow-300">
+                            <a href="/laporan-penjualan" className="hover:text-yellow-300">
                                 Laporan
                             </a>
                         </li>
