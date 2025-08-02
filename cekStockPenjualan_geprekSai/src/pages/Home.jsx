@@ -19,6 +19,10 @@ const Home = () => {
         if (!localStorage.getItem("info")) {
             navigate("/login");
         }
+
+        if (localStorage.getItem("info") === "spv") {
+            navigate("/stock-bahan");
+        }
     }, [navigate]);
 
     const getMenus = async () => {
