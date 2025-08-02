@@ -100,6 +100,16 @@ const Navbar = () => {
                     </Link>
                 </li>
 
+                <li>
+                    <Link
+                        to={"/laporan-stok"}
+                        className={`hover:text-yellow-300 ${
+                            infoLogin === "kasir" ? "hidden" : "block"
+                        }`}>
+                        Laporan Stok
+                    </Link>
+                </li>
+
                 <button
                     type="button"
                     onClick={() => logOut()}

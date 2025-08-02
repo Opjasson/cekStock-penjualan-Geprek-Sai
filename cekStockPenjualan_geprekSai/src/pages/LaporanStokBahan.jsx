@@ -1,15 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
-import MainLayout from "../Components/Templates/MainLayout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import _ from "lodash";
+import Kasir_Layout from "../components/mainLayout/Kasir_Layout";
+import { MdKeyboardBackspace } from "react-icons/md";
 
 const LaporanStok = () => {
     // useState adalah tempat penyimpanan sementara
     const [data, setData] = useState([]);
     const [findLower1, setfindLower1] = useState("null");
     const [findLower2, setfindLower2] = useState("null");
-    // ------
+    // ------`
 
     // navigate untuk berpindah ke halaman lainnya
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ const LaporanStok = () => {
     const getData = async () => {
         try {
             const response = await axios.get("http://localhost:8000/stock");
+            
             setData(response.data);
         } catch (error) {
             console.log(error);
@@ -56,13 +58,16 @@ const LaporanStok = () => {
     // --------
 
     // Range tanggal yang dipilih
-    const startDate = new Date(findLower1.split("T")[0]);
-    const endDate = new Date(findLower2.split("T")[0]);
+    const startDate = findLower1;
+    const endDate = findLower2;
 
     const filteredData = data.filter((a) => {
-        const tgl = new Date(a.createdAt.split("T")[0]);
+        const tgl = a.createdAt.split("T")[0];
         return tgl >= startDate && tgl <= endDate;
     });
+
+    console.log(filteredData);
+    
 
     // set up print
     const handlePrint = () => {
@@ -81,10 +86,12 @@ const LaporanStok = () => {
 
     return (
         // Tampilan halaman semua data
-        <MainLayout>
+        <Kasir_Layout>
             {/* head judul halaman */}
-            <div className="flex items-center justify-between" id="headPage">
-                <div className="mb-10 bg-blue-500 md:w-1/2 p-3 rounded-br-4xl rounded-sm text-white">
+            <div
+                className="flex-col items-center justify-between"
+                id="headPage">
+                <div className="mb-10 bg-green-600 md:w-1/2 p-3 rounded-br-4xl rounded-sm text-white">
                     <h1 className="md:text-4xl text-2xl font-extrabold">
                         Semua stock
                     </h1>
@@ -93,7 +100,7 @@ const LaporanStok = () => {
                     </p>
                 </div>
 
-                <div className="flex items-center border w-[50%] bg-slate-300 lg:px-2 px-1 lg:py-1.5 py-0 lg:rounded-xl rounded-sm h-fit justify-between">
+                <div className="flex mx-auto items-center border w-[50%] bg-slate-300 lg:px-2 px-1 lg:py-1.5 py-0 lg:rounded-xl rounded-sm h-fit justify-between">
                     <div>
                         <p>dari tanggal :</p>
                         <input
@@ -139,20 +146,20 @@ const LaporanStok = () => {
                 {findLower1 !== null ? (
                     <div className="flex w-72 justify-between">
                         <p>{findLower1.split("T")[0]}</p>
-                        <p>------</p>
+                        <MdKeyboardBackspace className="rotate-180"/>
                         <p>{findLower2.split("T")[0]}</p>
                     </div>
                 ) : (
                     <div>null</div>
                 )}
 
-                <div className="border border-blue-400">
+                <div className="border-t-2 border-black">
                     <h1 className="text-center font-bold text-2xl">
-                        LAPORAN DATA STOK BAHAN BAKU RESTO PREMIER HOTEL TEGAL
+                        LAPORAN DATA STOK BAHAN BAKU GEPREK SA'I MEJASEM
                     </h1>
                 </div>
 
-                <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-[12px] text-white font-bold shadow-slate-500 shadow-md">
+                <div className="flex justify-between px-5 py-3 rounded-xl lg:text-lg text-[12px] text-black border-2 font-bold shadow-slate-500 shadow-md">
                     <h2>No</h2>
                     <h2 className="lg:ml-0 ml-1.5 lg:w-40">Tanggal</h2>
                     <h2 className="lg:ml-0 ml-1.5 lg:w-40">Nama barang</h2>
@@ -175,7 +182,7 @@ const LaporanStok = () => {
                                 {item.createdAt.split("T")[0]}
                             </h2>
                             <h2 className=" w-40 ml-3 capitalize">
-                                {item.nama_Barang}
+                                {item.nama_barang}
                             </h2>
                             <h2 className="w-32">{item.satuan}</h2>
                             <h2 className="w-32">{item.stok_awal}</h2>
@@ -193,7 +200,7 @@ const LaporanStok = () => {
                 {/* ---------- */}
             </div>
             {/* end menampilkan list data */}
-        </MainLayout>
+        </Kasir_Layout>
         // end tampilan halaman data
     );
 };
