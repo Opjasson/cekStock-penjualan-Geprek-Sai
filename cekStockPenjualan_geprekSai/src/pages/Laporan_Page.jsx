@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Kasir_Layout from "../components/mainLayout/Kasir_Layout";
+import { FaPrint } from "react-icons/fa";
 import axios from "axios";
 
 const Laporan_Page = () => {
@@ -131,6 +132,12 @@ const Laporan_Page = () => {
                 </div>
             </div>
 
+            <div className="bg-green-500 justify-center gap-2.5 flex w-1/12 px-3 py-2 hover:cursor-pointer hover:bg-green-600 rounded-xl text-white font-extrabold">
+                <FaPrint className="text-xl mt-0.5"/>
+                <p className="text-xl">Print</p>
+            </div>
+           
+
             <div className="mb-48">
                 <div className="border-b-2 pb-3 text-center">
                     <h1 className="text-2xl font-bold">
@@ -185,30 +192,42 @@ const Laporan_Page = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredData.length > 0 ? filteredData.map((item, index) => (
-                                <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-black">
-                                    <th
-                                        scope="row"
-                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {index}
-                                    </th>
-                                    <th
-                                        scope="row"
-                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {item.createdAt}
-                                    </th>
-                                    <th
-                                        scope="row"
-                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {item.nama_menu}
-                                    </th>
-                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{item.qty}</td>
-                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{item.harga}</td>
-                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{item.harga * item.qty}</td>
-                                </tr>
-                            )) : 
-                                <h3 className="text-gray-900 font-bold text-2xl">Belum Ada Penjualan Bulan Ini</h3>
-                            }
+                            {filteredData.length > 0 ? (
+                                filteredData.map((item, index) => (
+                                    <tr
+                                        key={index}
+                                        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-black">
+                                        <th
+                                            scope="row"
+                                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {index}
+                                        </th>
+                                        <th
+                                            scope="row"
+                                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {item.createdAt}
+                                        </th>
+                                        <th
+                                            scope="row"
+                                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {item.nama_menu}
+                                        </th>
+                                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {item.qty}
+                                        </td>
+                                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {item.harga}
+                                        </td>
+                                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {item.harga * item.qty}
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <h3 className="text-gray-900 font-bold text-2xl">
+                                    Belum Ada Penjualan Bulan Ini
+                                </h3>
+                            )}
                         </tbody>
                     </table>
                 </div>
