@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"
 import Kasir_Layout from "../components/mainLayout/Kasir_Layout";
 import { FaPrint } from "react-icons/fa";
 import axios from "axios";
+import { FaBackward } from "react-icons/fa";
 
 const Laporan_Page = () => {
     const [menu, setMenu] = useState([]);
 
     const [cart, setCart] = useState([]);
-    const [findLower1, setfindLower1] = useState(new Date().toISOString().split("T")[0]);
-    const [findLower2, setfindLower2] = useState(new Date().toISOString().split("T")[0]);
+    const [findLower1, setfindLower1] = useState(
+        new Date().toISOString().split("T")[0]
+    );
+    const [findLower2, setfindLower2] = useState(
+        new Date().toISOString().split("T")[0]
+    );
 
+    const navigate = useNavigate()
     const getCart = async () => {
         try {
             const response = await axios.get("http://localhost:8000/cart");
@@ -89,18 +96,36 @@ const Laporan_Page = () => {
     // // Filter berdasarkan range
     const filteredData = transaksiDenganHarga.filter((item) => {
         const tgl = item.createdAt;
-        
+
         return tgl >= startDate && tgl <= endDate;
     });
 
     const totalPenjualan2 = filteredData.reduce((total, item) => {
-        return total + item.harga_jual * item.qty;
+        return total + item.harga * item.qty;
     }, 0);
     console.log("Test : ", filteredData);
 
+    // set up print
+    const handlePrint = () => {
+        const Navbar = document.querySelector("nav");
+        const HeadPage = document.querySelector("#headPage");
+        const SetDate = document.querySelector("#setDate");
+        const PrintButton = document.querySelector("#printButton");
+        const TombolKembali = document.querySelector("#tombolKembali");
+
+        Navbar.setAttribute("hidden", "");
+        SetDate.setAttribute("hidden", "");
+        HeadPage.setAttribute("hidden", "");
+        PrintButton.setAttribute("hidden", "");
+        window.print();
+        TombolKembali.removeAttribute("hidden");
+    };
+
     return (
         <Kasir_Layout>
-            <div className="mb-10 bg-green-600 md:w-1/2 p-3 rounded-br-4xl rounded-sm text-white">
+            <div
+                id="headPage"
+                className="mb-10 bg-green-600 md:w-1/2 p-3 rounded-br-4xl rounded-sm text-white">
                 <h1 className="md:text-4xl text-2xl font-extrabold">
                     Laporan Penjualan
                 </h1>
@@ -109,7 +134,9 @@ const Laporan_Page = () => {
                 </p>
             </div>
 
-            <div className="flex items-center mx-auto mb-10 border w-[50%] bg-slate-300 lg:px-2 px-1 lg:py-1.5 py-0 lg:rounded-xl rounded-sm h-fit justify-between">
+            <div
+                id="setDate"
+                className="flex items-center mx-auto mb-10 border w-[50%] bg-slate-300 lg:px-2 px-1 lg:py-1.5 py-0 lg:rounded-xl rounded-sm h-fit justify-between">
                 <div>
                     <p>dari tanggal :</p>
                     <input
@@ -132,11 +159,22 @@ const Laporan_Page = () => {
                 </div>
             </div>
 
-            <div className="bg-green-500 justify-center gap-2.5 flex w-1/12 px-3 py-2 hover:cursor-pointer hover:bg-green-600 rounded-xl text-white font-extrabold">
-                <FaPrint className="text-xl mt-0.5"/>
+            <div
+                onClick={handlePrint}
+                id="printButton"
+                className="bg-green-500 justify-center gap-2.5 flex w-1/12 px-3 py-2 hover:cursor-pointer hover:bg-green-600 rounded-xl text-white font-extrabold">
+                <FaPrint className="text-xl mt-0.5" />
                 <p className="text-xl">Print</p>
             </div>
-           
+
+            <div
+                id="tombolKembali"
+                onClick={() => navigate("/")}
+                hidden
+                className="bg-green-500 justify-center gap-2.5 flex w-[10%] px-3 py-2 hover:cursor-pointer hover:bg-green-600 rounded-xl text-white font-extrabold">
+                <FaBackward className="text-xl mt-0.5" />
+                <p className="text-xl">Kembali</p>
+            </div>
 
             <div className="mb-48">
                 <div className="border-b-2 pb-3 text-center">
@@ -159,11 +197,11 @@ const Laporan_Page = () => {
                         {" ->"} {findLower2}
                     </p>
                     <p>
-                        <span className="font-bold">Jumlah Transaksi</span> : 2
+                        <span className="font-bold">Jumlah Transaksi</span> : {filteredData.length}
                     </p>
                     <p>
                         <span className="font-bold">Total Pendapatan</span> :
-                        2000000
+                        Rp. {Number(totalPenjualan2).toLocaleString()}
                     </p>
                 </div>
 
@@ -200,7 +238,7 @@ const Laporan_Page = () => {
                                         <th
                                             scope="row"
                                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {index}
+                                            {index + 1}
                                         </th>
                                         <th
                                             scope="row"
