@@ -93,10 +93,10 @@ const LaporanStok = () => {
                 id="headPage">
                 <div className="mb-10 bg-green-600 md:w-1/2 p-3 rounded-br-4xl rounded-sm text-white">
                     <h1 className="md:text-4xl text-2xl font-extrabold">
-                        Semua stock
+                        Laporan Stok Bahan
                     </h1>
                     <p className="md:text-xl font-light">
-                        Menampilkan semua data stock
+                        Setting Stok Bahan Yang Ingin Dicetak
                     </p>
                 </div>
 
@@ -125,7 +125,7 @@ const LaporanStok = () => {
 
             {/* menampilkan data atau list data */}
 
-            <div className="mt-7 border-b-2 border-blue-500 pb-16">
+            <div className="mt-7 border-b-2 border-black pb-16">
                 <button
                     id="printButton"
                     onClick={handlePrint}
