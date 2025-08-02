@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logoSai } from "../../assets";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaArrowRight } from "react-icons/fa";
@@ -33,6 +33,14 @@ const Navbar = () => {
         }
     };
 
+    const navigate = useNavigate();
+
+    const logOut = () => {
+        localStorage.clear()
+        navigate("/login")
+    }
+    const infoLogin = localStorage.getItem("info")
+    
     return (
         <nav className=" bg-red-600 lg:px-6 px-4 pt-1.5 flex justify-between items-center mb-5">
             <div className="text-xl text-white flex md:h-[6rem] overflow-hidden items-center">
@@ -43,44 +51,61 @@ const Navbar = () => {
             </div>
 
             <div className="lg:flex hidden list-none text-xl justify-between w-1/2  text-white font-bold">
-                <div className="flex items-center gap-1.5 relative">
-                    <li>
-                        <Link to={"/"} className="hover:text-yellow-300">
-                            Kasir
-                        </Link>
-                    </li>
-                    <FaArrowRight
-                        onClick={handleKasirDropDown}
-                        className="cursor-pointer hover:rotate-90 delay-200"
-                    />
-                    <div
-                        id="dropDownMenu"
-                        hidden
-                        className="border absolute top-8 left-10 w-48 bg-slate-300 px-2 rounded-xl">
-                        <li>
-                            <a
-                                href="/history-transaksi"
-                                className="hover:text-yellow-300">
-                                History transaksi
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/laporan-penjualan" className="hover:text-yellow-300">
-                                Laporan
-                            </a>
-                        </li>
-                    </div>
-                </div>
                 <li>
-                    <Link to={"/manage-menu"} className="hover:text-yellow-300">
+                    <Link
+                        to={"/"}
+                        className={`hover:text-yellow-300 ${
+                            infoLogin === "kasir" ? "block" : "hidden"
+                        }`}>
+                        Kasir
+                    </Link>
+                </li>
+
+                <li>
+                    <Link
+                        to={"/history-transaksi"}
+                        className={`hover:text-yellow-300 ${
+                            infoLogin === "kasir" ? "block" : "hidden"
+                        }`}>
+                        History Transaksi
+                    </Link>
+                </li>
+
+                <li>
+                    <Link
+                        to={"/laporan-penjualan"}
+                        className={`hover:text-yellow-300 ${
+                            infoLogin === "kasir" ? "block" : "hidden"
+                        }`}>
+                        Laporan Penjualan
+                    </Link>
+                </li>
+
+                <li>
+                    <Link
+                        to={"/manage-menu"}
+                        className={`hover:text-yellow-300 ${
+                            infoLogin === "kasir" ? "block" : "hidden"
+                        }`}>
                         Manage Menu
                     </Link>
                 </li>
                 <li>
-                    <Link to={"/stock-bahan"} className="hover:text-yellow-300">
+                    <Link
+                        to={"/stock-bahan"}
+                        className={`hover:text-yellow-300 ${
+                            infoLogin === "kasir" ? "hidden" : "block"
+                        }`}>
                         Stok Bahan
                     </Link>
                 </li>
+
+                <button
+                    type="button"
+                    onClick={() => logOut()}
+                    className="hover:cursor-pointer bg-yellow-600 text-white py-2 px-2 rounded hover:bg-yellow-700 text-sm">
+                    LOGOUT
+                </button>
             </div>
 
             <GiHamburgerMenu

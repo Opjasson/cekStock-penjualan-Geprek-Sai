@@ -13,6 +13,14 @@ const Home = () => {
     const [cash, setCash] = useState();
     const [filter, setFilter] = useState([]);
 
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!localStorage.getItem("info")) {
+            navigate("/login");
+        }
+    }, [navigate]);
+
     const getMenus = async () => {
         try {
             const response = await axios.get("http://localhost:8000/menu");
@@ -50,19 +58,15 @@ const Home = () => {
         }
     };
 
-
     const handleCreateTransaksi = async () => {
         const response = await axios.post("http://localhost:8000/transaksi");
         const idTransaksi = response.data.response.id;
-    
+
         // localStorage.setItem("transId", jsonRes.response.id);
-        await axios.patch(
-            `http://localhost:8000/transaksi/${idTransaksi}`,
-            {
-                // bayarPelanggan : bayar,
-                totalHarga: totalPrice,
-            }
-        );
+        await axios.patch(`http://localhost:8000/transaksi/${idTransaksi}`, {
+            // bayarPelanggan : bayar,
+            totalHarga: totalPrice,
+        });
 
         cart.forEach(async (item) => {
             await axios.post("http://localhost:8000/cart", {
@@ -159,7 +163,6 @@ const Home = () => {
                             <option value="makanan">Makanan</option>
                         </select>
                         {/* end filter menu */}
-
                     </div>
 
                     {/* Show all menu */}
