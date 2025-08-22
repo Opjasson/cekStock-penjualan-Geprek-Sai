@@ -43,22 +43,22 @@ export const getAbsenById = async (req, res) => {
 
 export const updateData_Absen = async (req, res) => {
     try {
-        const dataMenu = await absenModel.findOne({
+        const dataAbsen = await absenModel.findOne({
             where: {
                 id: req.params.id,
             },
         });
-        const { nama_menu, harga, kategori, stock_menu, img } = req.body;
-        await dataMenu.update(
+        const { jam_masuk, jam_keluar, tanggal, userId } = req.body;
+        await dataAbsen.update(
             {
-                nama_menu,
-                harga,
-                kategori,
-                img,
+                jam_masuk,
+                jam_keluar,
+                tanggal,
+                userId,
             },
             {
                 where: {
-                    id: dataMenu.id,
+                    id: dataAbsen.id,
                 },
             }
         );
