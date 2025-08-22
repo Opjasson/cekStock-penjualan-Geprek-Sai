@@ -112,16 +112,9 @@ const Navbar = () => {
 
                 <button
                     type="button"
-                    onClick={() => logOut()}
+                    onClick={() => navigate("/absensi-user")}
                     className="hover:cursor-pointer bg-green-400 text-white py-2 px-2 rounded hover:bg-green-600 text-sm">
-                    HADIR
-                </button>
-                
-                <button
-                    type="button"
-                    onClick={() => logOut()}
-                    className="hover:cursor-pointer bg-red-400 text-white py-2 px-2 rounded hover:bg-red-700 text-sm">
-                    PULANG
+                    ABSENSI
                 </button>
 
                 <button
