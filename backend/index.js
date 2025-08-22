@@ -7,6 +7,7 @@ import userRoutes from "./routes/userRoutes.js"
 import authRoutes from "./routes/authRoute.js"
 import transaksi_Route from "./routes/transaksiRoute.js";
 import cart_Route from "./routes/cartRoute.js";
+import absenRoute from "./routes/absenRoute.js"
 import stokBahan_Model from "./models/stokBahanModel.js";
 import Users from "./models/absenModel.js";
 
@@ -27,6 +28,7 @@ app.use(userRoutes);
 app.use(authRoutes);
 app.use(transaksi_Route);
 app.use(cart_Route);
+app.use(absenRoute);
 
 
 app.listen(process.env.PORT, (error) => {
