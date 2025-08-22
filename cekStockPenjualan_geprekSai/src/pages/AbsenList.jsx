@@ -66,10 +66,15 @@ const AbsenList = () => {
                             <span className="font-semibold">Divisi</span> :
                             Kasir
                         </p>
+                        <div className="flex w-1/2 gap-5">
+                            <button className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700 w-52">
+                                ABSEN
+                            </button>
 
-                        <button className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700 w-52">
-                            ABSEN
-                        </button>
+                            <button className="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700 w-52">
+                                PULANG
+                            </button>
+                        </div>
                     </div>
                 </div>
 
