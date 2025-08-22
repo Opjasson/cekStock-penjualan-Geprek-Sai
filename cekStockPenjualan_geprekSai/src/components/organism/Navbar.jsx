@@ -50,7 +50,7 @@ const Navbar = () => {
                 </h3>
             </div>
 
-            <div className="lg:flex hidden list-none text-xl justify-between w-1/2  text-white font-bold">
+            <div className="lg:flex hidden list-none text-xl justify-between w-3/4  text-white font-bold">
                 <li>
                     <Link
                         to={"/"}
@@ -109,6 +109,20 @@ const Navbar = () => {
                         Laporan Stok
                     </Link>
                 </li>
+
+                <button
+                    type="button"
+                    onClick={() => logOut()}
+                    className="hover:cursor-pointer bg-green-400 text-white py-2 px-2 rounded hover:bg-green-600 text-sm">
+                    HADIR
+                </button>
+                
+                <button
+                    type="button"
+                    onClick={() => logOut()}
+                    className="hover:cursor-pointer bg-red-400 text-white py-2 px-2 rounded hover:bg-red-700 text-sm">
+                    PULANG
+                </button>
 
                 <button
                     type="button"
