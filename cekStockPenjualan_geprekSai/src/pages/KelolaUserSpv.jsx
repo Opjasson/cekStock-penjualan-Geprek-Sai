@@ -53,7 +53,7 @@ const KelolaUserSpv = () => {
                 {/* Tambah Pengguna */}
                 <div className="bg-white shadow p-4 mb-6 border">
                     <h2 className="text-lg font-semibold text-purple-700 mb-2">
-                        + Tambah Pengguna
+                        + Tambah Kasir
                     </h2>
                     <form onSubmit={handleSubmit} className="space-y-3">
                         <input
