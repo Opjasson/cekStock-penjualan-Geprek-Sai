@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 import Kasir_Layout from "../components/mainLayout/Kasir_Layout";
 
 const KelolaUserSpv = () => {
-    const [username, setUsername] = useState();
+    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [confPassword, setConfPassword] = useState();
     const [data, setData] = useState([]);
 
     const navigate = useNavigate();
@@ -29,20 +30,26 @@ const KelolaUserSpv = () => {
     const filterKasirOnly = data.filter((item) => item.role === "kasir");
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        await axios.post("http://localhost:5000/user", {
-            username,
-            // role,
-            password,
-        });
-        alert("User berhasil ditambahkan!");
-        navigate("/");
+        try {
+            e.preventDefault();
+            await axios.post("http://localhost:8000/user", {
+                email,
+                role: "kasir",
+                password,
+                confPassword,
+            });
+            alert("User berhasil ditambahkan!");
+            navigate("/absensi-setting-spv");
+        } catch (error) {
+            alert("Password dan Confirm Password Tidak Sama!")
+        }
+        
     };
 
     const handleDelete = async (id) => {
-        await axios.delete(`http://localhost:5000/user/${id}`);
+        await axios.delete(`http://localhost:8000/user/${id}`);
         alert("User berhasil dihapus!");
-        navigate("/");
+        navigate("/absensi-setting-spv");
     };
 
     return (
@@ -60,9 +67,9 @@ const KelolaUserSpv = () => {
                     <form onSubmit={handleSubmit} className="space-y-3">
                         <input
                             type="text"
-                            name="username"
-                            placeholder="Username"
-                            onChange={(a) => setUsername(a.target.value)}
+                            name="email"
+                            placeholder="Email"
+                            onChange={(a) => setEmail(a.target.value)}
                             className="w-full border p-2 rounded bg-blue-100"
                         />
 
@@ -71,6 +78,14 @@ const KelolaUserSpv = () => {
                             name="password"
                             placeholder="Password"
                             onChange={(a) => setPassword(a.target.value)}
+                            className="w-full border p-2 rounded bg-blue-100"
+                        />
+
+                        <input
+                            type="password"
+                            name="confPassword"
+                            placeholder="Confirm Password"
+                            onChange={(a) => setConfPassword(a.target.value)}
                             className="w-full border p-2 rounded bg-blue-100"
                         />
 
@@ -85,7 +100,7 @@ const KelolaUserSpv = () => {
                 {/* Daftar Pengguna */}
                 <div className="bg-white shadow p-4 border">
                     <h2 className="text-lg font-semibold text-pink-600 mb-4">
-                        📋 Daftar Pengguna
+                        📋 Daftar Akun Kasir
                     </h2>
                     <table className="w-full border text-left">
                         <thead>
@@ -107,8 +122,16 @@ const KelolaUserSpv = () => {
                                             onClick={() =>
                                                 handleDelete(user.id)
                                             }
-                                            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                                            className="bg-red-500 mr-5 text-white px-3 py-1 rounded hover:bg-red-600">
                                             Hapus
+                                        </button>
+
+                                        <button
+                                            onClick={() =>
+                                                handleDelete(user.id)
+                                            }
+                                            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+                                            Ubah
                                         </button>
                                     </td>
                                 </tr>
