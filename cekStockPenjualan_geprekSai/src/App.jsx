@@ -13,6 +13,7 @@ import Laporan_Page from "./pages/Laporan_Page";
 import LaporanStok from "./pages/LaporanStokBahan";
 import AbsenList from "./pages/AbsenList";
 import AbsenSetSpv from "./pages/AbsenSetSpv";
+import DetailAbsenKasir from "./pages/DetailAbsenKasir";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
                     <Route path="/laporan-stok" element={<LaporanStok />} />
                     <Route path="/absensi-user" element={<AbsenList />} />
                     <Route path="/absensi-setting-spv" element={<AbsenSetSpv />} />
+                    <Route path="/absensi-setting-spv/detail-absensi/:id" element={<DetailAbsenKasir />} />
                 </Routes>
             </BrowserRouter>
         </>
