@@ -6,6 +6,8 @@ import { useEffect } from "react";
 
 const AbsenList = () => {
     const [dataAbsen1, setDataAbsen] = useState([]);
+    const [email, setEmail] = useState("");
+    const [role, setRole] = useState("");
     const navigate = useNavigate();
     const absenID = localStorage.getItem("idAbsen");
 
@@ -31,6 +33,26 @@ const AbsenList = () => {
     useEffect(() => {
         getAbsensUser();
     }, [userId]);
+
+    const getUser = async () => {
+        try {
+            const response = await axios.get(
+                `http://localhost:8000/user/${userId}`
+            );
+            console.log(response.data);
+            setEmail(response.data.email);
+            setRole(response.data.role);
+            // setDataAbsen(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getUser();
+    }, [userId]);
+
+
 
     const formatTanggal = (date) => {
         const days = [
@@ -90,13 +112,13 @@ const AbsenList = () => {
                     <h3 className="font-medium mb-2">Detail Absen</h3>
                     <div className="flex flex-col gap-4 text-sm">
                         <p>
-                            <span className="font-semibold">Nama</span> : Rudi
-                            Tabudi
+                            <span className="font-semibold">Email</span> :
+                            {" " + email}
                         </p>
 
                         <p>
                             <span className="font-semibold">Divisi</span> :
-                            Kasir
+                            {" " + role}
                         </p>
                         <div className="flex w-1/2 gap-5">
                             <button
