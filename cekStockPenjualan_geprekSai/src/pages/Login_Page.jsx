@@ -25,6 +25,7 @@ const Login_Page = () => {
 
             navigate("/");
             localStorage.setItem("info", response.data.response.role);
+            localStorage.setItem("id", response.data.response.id);
         } catch (error) {
             setInvalid(error.response.data.message);
         }
