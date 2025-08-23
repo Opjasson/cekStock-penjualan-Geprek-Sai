@@ -128,7 +128,9 @@ const KelolaUserSpv = () => {
 
                                         <button
                                             onClick={() =>
-                                                handleDelete(user.id)
+                                                navigate(
+                                                    `/kelola-user/ubah-akun-kasir/${user.id}`
+                                                )
                                             }
                                             className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
                                             Ubah

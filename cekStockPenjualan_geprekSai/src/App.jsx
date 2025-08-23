@@ -15,6 +15,7 @@ import AbsenList from "./pages/AbsenList";
 import AbsenSetSpv from "./pages/AbsenSetSpv";
 import DetailAbsenKasir from "./pages/DetailAbsenKasir";
 import KelolaUserSpv from "./pages/KelolaUserSpv";
+import UbahAkunKasir from "./pages/UbahAkunKasir";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
                     <Route path="/absensi-setting-spv" element={<AbsenSetSpv />} />
                     <Route path="/absensi-setting-spv/detail-absensi/:id" element={<DetailAbsenKasir />} />
                     <Route path="/kelola-user" element={<KelolaUserSpv />} />
+                    <Route path="/kelola-user/ubah-akun-kasir/:id" element={<UbahAkunKasir />} />
                 </Routes>
             </BrowserRouter>
         </>
