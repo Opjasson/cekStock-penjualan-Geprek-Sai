@@ -1,20 +1,21 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import MainLayout from "../Components/Templates/MainLayout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Kasir_Layout from "../components/mainLayout/Kasir_Layout";
 
 const KelolaUserSpv = () => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
-    const [role, setRole] = useState();
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
 
     const navigate = useNavigate();
 
     const getAkunUsers = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/user");
+            const response = await axios.get("http://localhost:8000/user");
+            console.log(response.data);
+
             setData(response.data.data);
         } catch (error) {
             console.log(error);
@@ -25,11 +26,13 @@ const KelolaUserSpv = () => {
         getAkunUsers();
     }, []);
 
+    const filterKasirOnly = data.filter((item) => item.role === "kasir");
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         await axios.post("http://localhost:5000/user", {
             username,
-            role,
+            // role,
             password,
         });
         alert("User berhasil ditambahkan!");
@@ -43,15 +46,14 @@ const KelolaUserSpv = () => {
     };
 
     return (
-        <MainLayout>
-            <div className="p-6 max-w-4xl mx-auto">
-                <h1 className="text-2xl font-bold mb-4">
-                    <span className="text-purple-700 mr-2">👤</span>
+        <Kasir_Layout>
+            <div className="p-6 max-w-4xl mx-auto ">
+                <h1 className="text-2xl font-bold mb-4 bg-amber-300 px-5 rounded-xl">
                     Kelola Akun Kasir
                 </h1>
 
                 {/* Tambah Pengguna */}
-                <div className="bg-white shadow p-4 mb-6 border">
+                <div className="bg-amber-300 shadow p-4 mb-6 border rounded-xl">
                     <h2 className="text-lg font-semibold text-purple-700 mb-2">
                         + Tambah Kasir
                     </h2>
@@ -71,15 +73,6 @@ const KelolaUserSpv = () => {
                             onChange={(a) => setPassword(a.target.value)}
                             className="w-full border p-2 rounded bg-blue-100"
                         />
-
-                        <select
-                            name="role"
-                            onChange={(a) => setRole(a.target.value)}
-                            className="w-full border p-2 rounded">
-                            <option value="">-- Pilih Role --</option>
-                            <option value="admin">Admin</option>
-                            <option value="kasir">Kasir</option>
-                        </select>
 
                         <button
                             type="submit"
@@ -104,12 +97,10 @@ const KelolaUserSpv = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data?.map((user, index) => (
+                            {filterKasirOnly.map((user, index) => (
                                 <tr key={index}>
                                     <td className="p-2 border">{index + 1}</td>
-                                    <td className="p-2 border">
-                                        {user.username}
-                                    </td>
+                                    <td className="p-2 border">{user.email}</td>
                                     <td className="p-2 border">{user.role}</td>
                                     <td className="p-2 border">
                                         <button
@@ -126,7 +117,7 @@ const KelolaUserSpv = () => {
                     </table>
                 </div>
             </div>
-        </MainLayout>
+        </Kasir_Layout>
     );
 };
 
