@@ -4,13 +4,15 @@ export const createAbsen = async (req, res) => {
     try {
         const { jam_masuk, jam_keluar, tanggal, userId } = req.body;
 
-        await absenModel.create({
+        const absen = await absenModel.create({
             jam_masuk,
             jam_keluar,
             tanggal,
-            userId
+            userId,
         });
-        res.status(201).json({ msg: "Data berhasil ditambahkan" });
+
+        const response = await absen.toJSON()
+        res.status(201).json({ msg: "Data berhasil ditambahkan", data: response });
     } catch (error) {
         res.status(400).json({ msg: error.message });
     }

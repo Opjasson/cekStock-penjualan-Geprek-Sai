@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import Kasir_Layout from "../components/mainLayout/Kasir_Layout";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AbsenList = () => {
     const [bulan, setBulan] = useState("12");
     const [tahun, setTahun] = useState("2020");
 
+    const navigate = useNavigate();
+    const absenID = localStorage.getItem("idAbsen");
     // Dummy data absensi
     const dataAbsen = [
         {
@@ -44,8 +48,40 @@ const AbsenList = () => {
         },
     ];
 
-    const handleExport = () => {
-        alert("Export laporan absensi...");
+    const tgl = new Date();
+    const jam = String(tgl.getHours()).padStart(2, "0"); // 00 - 23
+    const menit = String(tgl.getMinutes()).padStart(2, "0"); // 00 - 59
+    const detik = String(tgl.getSeconds()).padStart(2, "0"); // 00 - 59
+    const userId = localStorage.getItem("id");
+    console.log(tgl.toISOString());
+
+    const createAbsen = async () => {
+        try {
+            const response = await axios.post("http://localhost:8000/absen", {
+                jam_masuk: `${jam}:${menit}:${detik}`,
+                tanggal: tgl.toISOString(),
+                userId,
+            });
+            console.log("data", response.data.data);
+            // setIdAbsen(response.data.data.id);
+            localStorage.setItem("absen", "true");
+            localStorage.setItem("idAbsen", response.data.data.id);
+            alert("Berhasil absen :)");
+            navigate("/manage-menu");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const createPulang = async () => {
+        try {
+            await axios.patch(`http://localhost:8000/absen/${absenID}`, {
+                jam_keluar: `${jam}:${menit}:${detik}`,
+            });
+            alert("Silahkan untuk logout :)");
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -67,11 +103,21 @@ const AbsenList = () => {
                             Kasir
                         </p>
                         <div className="flex w-1/2 gap-5">
-                            <button className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700 w-52">
+                            <button
+                                onClick={createAbsen}
+                                disabled={
+                                    localStorage.getItem("absen") ? true : false
+                                }
+                                className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700 w-52">
                                 ABSEN
                             </button>
 
-                            <button className="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700 w-52">
+                            <button
+                                onClick={createPulang}
+                                disabled={
+                                    localStorage.getItem("absen") ? false : true
+                                }
+                                className="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700 w-52">
                                 PULANG
                             </button>
                         </div>
@@ -102,11 +148,11 @@ const AbsenList = () => {
                         Tampilkan
                     </button>
 
-                    <button
+                    {/* <button
                         onClick={handleExport}
                         className="ml-auto border px-4 py-1 rounded hover:bg-gray-100">
                         Export Laporan
-                    </button>
+                    </button> */}
                 </div>
 
                 <h3 className="font-medium mb-2">
