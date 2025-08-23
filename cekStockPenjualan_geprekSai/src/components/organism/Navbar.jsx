@@ -112,7 +112,7 @@ const Navbar = () => {
 
                 <li>
                     <Link
-                        to={"/laporan-stok"}
+                        to={"/absensi-setting-spv"}
                         className={`hover:text-yellow-300 ${
                             infoLogin === "kasir" ? "hidden" : "block"
                         }`}>
@@ -122,7 +122,9 @@ const Navbar = () => {
 
                 <button
                     type="button"
-                    hidden={localStorage.getItem("info") === "kasir" ? false : true}
+                    hidden={
+                        localStorage.getItem("info") === "kasir" ? false : true
+                    }
                     onClick={() => navigate("/absensi-user")}
                     className="hover:cursor-pointer bg-green-400 text-white py-2 px-2 rounded hover:bg-green-600 text-sm">
                     ABSENSI
