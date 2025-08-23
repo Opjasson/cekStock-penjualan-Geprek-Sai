@@ -2,51 +2,12 @@ import React, { useState } from "react";
 import Kasir_Layout from "../components/mainLayout/Kasir_Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const AbsenList = () => {
-    const [bulan, setBulan] = useState("12");
-    const [tahun, setTahun] = useState("2020");
-
+    const [dataAbsen1, setDataAbsen] = useState([]);
     const navigate = useNavigate();
     const absenID = localStorage.getItem("idAbsen");
-    // Dummy data absensi
-    const dataAbsen = [
-        {
-            no: 1,
-            tanggal: "Selasa, 01-12-2020",
-            jamMasuk: "Tidak Hadir",
-            jamKeluar: "Tidak Hadir",
-            status: "tidak-hadir",
-        },
-        {
-            no: 2,
-            tanggal: "Rabu, 02-12-2020",
-            jamMasuk: "Tidak Hadir",
-            jamKeluar: "Tidak Hadir",
-            status: "tidak-hadir",
-        },
-        {
-            no: 3,
-            tanggal: "Kamis, 03-12-2020",
-            jamMasuk: "Tidak Hadir",
-            jamKeluar: "Tidak Hadir",
-            status: "tidak-hadir",
-        },
-        {
-            no: 4,
-            tanggal: "Jum'at, 04-12-2020",
-            jamMasuk: "Tidak Hadir",
-            jamKeluar: "Tidak Hadir",
-            status: "tidak-hadir",
-        },
-        {
-            no: 5,
-            tanggal: "Sabtu, 05-12-2020",
-            jamMasuk: "Libur Akhir Pekan",
-            jamKeluar: "Libur Akhir Pekan",
-            status: "libur",
-        },
-    ];
 
     const tgl = new Date();
     const jam = String(tgl.getHours()).padStart(2, "0"); // 00 - 23
@@ -54,6 +15,41 @@ const AbsenList = () => {
     const detik = String(tgl.getSeconds()).padStart(2, "0"); // 00 - 59
     const userId = localStorage.getItem("id");
     console.log(tgl.toISOString());
+
+    const getAbsensUser = async () => {
+        try {
+            const response = await axios.get(
+                `http://localhost:8000/absen/${userId}`
+            );
+            console.log(response.data);
+            setDataAbsen(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getAbsensUser();
+    }, [userId]);
+
+    const formatTanggal = (date) => {
+        const days = [
+            "Minggu",
+            "Senin",
+            "Selasa",
+            "Rabu",
+            "Kamis",
+            "Jum'at",
+            "Sabtu",
+        ];
+
+        const hari = days[date.getDay()];
+        const tgl = String(date.getDate()).padStart(2, "0");
+        const bulan = String(date.getMonth() + 1).padStart(2, "0");
+        const tahun = date.getFullYear();
+
+        return `${hari}, ${tgl}-${bulan}-${tahun}`;
+    };
 
     const createAbsen = async () => {
         try {
@@ -126,7 +122,7 @@ const AbsenList = () => {
 
                 {/* Filter */}
                 <div className="flex items-center gap-3 mb-4">
-                    <select
+                    {/* <select
                         value={bulan}
                         onChange={(e) => setBulan(e.target.value)}
                         className="border rounded px-3 py-1">
@@ -142,7 +138,7 @@ const AbsenList = () => {
                         <option value="2020">2020</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
-                    </select>
+                    </select> */}
 
                     <button className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700">
                         Tampilkan
@@ -154,10 +150,10 @@ const AbsenList = () => {
                         Export Laporan
                     </button> */}
                 </div>
-
+                {/* 
                 <h3 className="font-medium mb-2">
                     Absen Bulan : Desember {tahun}
-                </h3>
+                </h3> */}
 
                 {/* Tabel */}
                 <div className="overflow-x-auto bg-white shadow rounded-lg">
@@ -171,25 +167,23 @@ const AbsenList = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {dataAbsen.map((row) => (
+                            {dataAbsen1.map((row, index) => (
                                 <tr
-                                    key={row.no}
-                                    className={
-                                        row.status === "tidak-hadir"
-                                            ? "bg-red-500 text-white"
-                                            : "bg-gray-700 text-white"
-                                    }>
+                                    key={index}
+                                    className={"bg-gray-700 text-white"}>
                                     <td className="px-3 py-2 border">
-                                        {row.no}
+                                        {index + 1}
                                     </td>
                                     <td className="px-3 py-2 border">
-                                        {row.tanggal}
+                                        {formatTanggal(
+                                            new Date(row.tanggal.split("T")[0])
+                                        )}
                                     </td>
                                     <td className="px-3 py-2 border">
-                                        {row.jamMasuk}
+                                        {row.jam_masuk}
                                     </td>
                                     <td className="px-3 py-2 border">
-                                        {row.jamKeluar}
+                                        {row.jam_keluar}
                                     </td>
                                 </tr>
                             ))}

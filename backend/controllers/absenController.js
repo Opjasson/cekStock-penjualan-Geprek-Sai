@@ -29,13 +29,12 @@ export const getAbsens = async (req, res) => {
     }
 };
 
-export const getAbsenById = async (req, res) => {
+export const getAbsenByUserId = async (req, res) => {
     try {
-        const response = await absenModel.findOne({
+        const response = await absenModel.findAll({
             where: {
-                id: req.params.id,
+                userId: req.params.id,
             },
-            attributes: ["id", "nama_menu", "harga", "kategori", "img"],
         });
         res.status(201).json(response);
     } catch (error) {

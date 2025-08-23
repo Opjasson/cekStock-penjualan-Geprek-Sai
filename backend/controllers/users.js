@@ -1,3 +1,4 @@
+import absenModel from "../models/absenModel.js";
 import Users from "../models/usersModel.js";
 import argon2 from "argon2";
 
@@ -5,6 +6,12 @@ export const getUsers = async (req, res) => {
     try {
         const response = await Users.findAll({
             attributes: ["id", "email"],
+            include: [
+                {
+                    model: absenModel,
+                    attributes: ["jam_masuk", "jam_keluar", "tanggal"],
+                },
+            ],
         });
         res.status(200).json({ msg: "get data succesfully", data: response });
     } catch (error) {
