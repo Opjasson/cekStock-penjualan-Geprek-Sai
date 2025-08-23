@@ -120,6 +120,16 @@ const Navbar = () => {
                     </Link>
                 </li>
 
+                <li>
+                    <Link
+                        to={"/kelola-user"}
+                        className={`hover:text-yellow-300 ${
+                            infoLogin === "kasir" ? "hidden" : "block"
+                        }`}>
+                        KELOLA USER
+                    </Link>
+                </li>
+
                 <button
                     type="button"
                     hidden={
