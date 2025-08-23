@@ -162,12 +162,12 @@ const AbsenList = () => {
                         <option value="2022">2022</option>
                     </select> */}
 
-                    <button className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700">
+                    {/* <button className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700">
                         Tampilkan
-                    </button>
+                    </button> */}
 
                     {/* <button
-                        onClick={handleExport}
+                        // onClick={handleExport}
                         className="ml-auto border px-4 py-1 rounded hover:bg-gray-100">
                         Export Laporan
                     </button> */}

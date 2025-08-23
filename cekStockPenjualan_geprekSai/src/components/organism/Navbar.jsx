@@ -112,6 +112,7 @@ const Navbar = () => {
 
                 <button
                     type="button"
+                    hidden={localStorage.getItem("info") === "kasir" ? false : true}
                     onClick={() => navigate("/absensi-user")}
                     className="hover:cursor-pointer bg-green-400 text-white py-2 px-2 rounded hover:bg-green-600 text-sm">
                     ABSENSI
