@@ -110,6 +110,16 @@ const Navbar = () => {
                     </Link>
                 </li>
 
+                <li>
+                    <Link
+                        to={"/laporan-stok"}
+                        className={`hover:text-yellow-300 ${
+                            infoLogin === "kasir" ? "hidden" : "block"
+                        }`}>
+                        ABSENSI LIST
+                    </Link>
+                </li>
+
                 <button
                     type="button"
                     hidden={localStorage.getItem("info") === "kasir" ? false : true}
