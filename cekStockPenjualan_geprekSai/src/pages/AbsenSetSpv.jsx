@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import Kasir_Layout from "../components/mainLayout/Kasir_Layout";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 const AbsenSetSpv = () => {
+    const [users, setUsers] = useState([]);
+    const navigate = useNavigate();
     // Dummy data karyawan
     const karyawan = [
-        { id: 1, nama: "Anissa Rahma" },
-        { id: 2, nama: "Willy" },
+        { id: 1, nama: "Budi_kasir@gmail.com" },
+        { id: 2, nama: "Sally_kasir@gmail.com" },
     ];
 
     const handleDetail = (id) => {
@@ -16,6 +18,25 @@ const AbsenSetSpv = () => {
         // di sini bisa diarahkan ke halaman detail absensi
         // contoh: navigate(`/karyawan/${id}`)
     };
+
+    const { id } = useParams();
+
+    useEffect(() => {
+        const getDataAbsen = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8000/user`);
+                setUsers(response.data.data);
+                console.log(response.data.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        getDataAbsen();
+    }, [id]);
+
+    const filterKasirOnly = users.filter((item) => item.role === "kasir");
+    console.log(filterKasirOnly);
 
     return (
         <Kasir_Layout>
@@ -35,18 +56,20 @@ const AbsenSetSpv = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {karyawan.map((item, index) => (
+                            {filterKasirOnly.map((item, index) => (
                                 <tr key={item.id} className="hover:bg-gray-50">
                                     <td className="px-4 py-2 border">
                                         {index + 1}
                                     </td>
                                     <td className="px-4 py-2 border">
-                                        {item.nama}
+                                        {item.email}
                                     </td>
                                     <td className="px-4 py-2 border">
                                         <button
                                             onClick={() =>
-                                                handleDetail(item.id)
+                                                navigate(
+                                                    `/absensi-setting-spv/detail-absensi/${item.id}`
+                                                )
                                             }
                                             className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 flex items-center gap-1">
                                             🔍 Detail

@@ -97,6 +97,7 @@ const AbsenList = () => {
                 jam_keluar: `${jam}:${menit}:${detik}`,
             });
             alert("Silahkan untuk logout :)");
+            navigate("/manage-menu");
         } catch (error) {
             console.log(error);
         }

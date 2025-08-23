@@ -5,7 +5,7 @@ import argon2 from "argon2";
 export const getUsers = async (req, res) => {
     try {
         const response = await Users.findAll({
-            attributes: ["id", "email"],
+            attributes: ["id", "email", "role"],
             include: [
                 {
                     model: absenModel,
@@ -25,6 +25,12 @@ export const getUserById = async (req, res) => {
             where: {
                 id: req.params.id,
             },
+            include: [
+                {
+                    model: absenModel,
+                    attributes: ["jam_masuk", "jam_keluar", "tanggal"],
+                },
+            ],
         });
         res.status(200).json(response);
     } catch (error) {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Kasir_Layout from "../components/mainLayout/Kasir_Layout";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 const DetailAbsenKasir = () => {
@@ -9,40 +9,18 @@ const DetailAbsenKasir = () => {
     const [email, setEmail] = useState("");
     const [role, setRole] = useState("");
     const navigate = useNavigate();
-    const absenID = localStorage.getItem("idAbsen");
 
-    const tgl = new Date();
-    const jam = String(tgl.getHours()).padStart(2, "0"); // 00 - 23
-    const menit = String(tgl.getMinutes()).padStart(2, "0"); // 00 - 59
-    const detik = String(tgl.getSeconds()).padStart(2, "0"); // 00 - 59
-    const userId = localStorage.getItem("id");
-    console.log(tgl.toISOString());
-
-    const getAbsensUser = async () => {
-        try {
-            const response = await axios.get(
-                `http://localhost:8000/absen/${userId}`
-            );
-            console.log(response.data);
-            setDataAbsen(response.data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    useEffect(() => {
-        getAbsensUser();
-    }, [userId]);
+    const { id } = useParams();
 
     const getUser = async () => {
         try {
             const response = await axios.get(
-                `http://localhost:8000/user/${userId}`
+                `http://localhost:8000/user/${id}`
             );
             console.log(response.data);
             setEmail(response.data.email);
             setRole(response.data.role);
-            // setDataAbsen(response.data);
+            setDataAbsen(response.data.absens);
         } catch (error) {
             console.log(error);
         }
@@ -50,7 +28,7 @@ const DetailAbsenKasir = () => {
 
     useEffect(() => {
         getUser();
-    }, [userId]);
+    }, [id]);
 
     const formatTanggal = (date) => {
         const days = [
@@ -71,39 +49,26 @@ const DetailAbsenKasir = () => {
         return `${hari}, ${tgl}-${bulan}-${tahun}`;
     };
 
-    const createAbsen = async () => {
-        try {
-            const response = await axios.post("http://localhost:8000/absen", {
-                jam_masuk: `${jam}:${menit}:${detik}`,
-                tanggal: tgl.toISOString(),
-                userId,
-            });
-            console.log("data", response.data.data);
-            // setIdAbsen(response.data.data.id);
-            localStorage.setItem("absen", "true");
-            localStorage.setItem("idAbsen", response.data.data.id);
-            alert("Berhasil absen :)");
-            navigate("/manage-menu");
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    // set up print
+    const handlePrint = () => {
+        const Navbar = document.querySelector("nav");
+        const PrintButton = document.querySelector("#printButton");
+        const TombolKembali = document.querySelector("#tombolKembali");
+        const HeadPage = document.querySelector("#headPage");
 
-    const createPulang = async () => {
-        try {
-            await axios.patch(`http://localhost:8000/absen/${absenID}`, {
-                jam_keluar: `${jam}:${menit}:${detik}`,
-            });
-            alert("Silahkan untuk logout :)");
-        } catch (error) {
-            console.log(error);
-        }
+        Navbar.setAttribute("hidden", "");
+        HeadPage.setAttribute("hidden", "");
+        PrintButton.setAttribute("hidden", "");
+        window.print();
+        TombolKembali.removeAttribute("hidden");
     };
 
     return (
         <Kasir_Layout>
             <div className="p-6 max-w-5xl mx-auto">
-                <h2 className="text-xl font-semibold mb-4">Absensi</h2>
+                <h2 id="headPage" className="text-xl font-semibold mb-4">
+                    Absensi
+                </h2>
 
                 {/* Detail Karyawan */}
                 <div className="bg-white shadow rounded-lg p-4 mb-6">
@@ -118,62 +83,21 @@ const DetailAbsenKasir = () => {
                             <span className="font-semibold">Divisi</span> :
                             {" " + role}
                         </p>
-                        <div className="flex w-1/2 gap-5">
-                            <button
-                                onClick={createAbsen}
-                                disabled={
-                                    localStorage.getItem("absen") ? true : false
-                                }
-                                className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700 w-52">
-                                ABSEN
-                            </button>
-
-                            <button
-                                onClick={createPulang}
-                                disabled={
-                                    localStorage.getItem("absen") ? false : true
-                                }
-                                className="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700 w-52">
-                                PULANG
-                            </button>
-                        </div>
                     </div>
                 </div>
 
                 {/* Filter */}
-                <div className="flex items-center gap-3 mb-4">
-                    {/* <select
-                        value={bulan}
-                        onChange={(e) => setBulan(e.target.value)}
-                        className="border rounded px-3 py-1">
-                        <option value="12">Desember</option>
-                        <option value="11">November</option>
-                        <option value="10">Oktober</option>
-                    </select>
-
-                    <select
-                        value={tahun}
-                        onChange={(e) => setTahun(e.target.value)}
-                        className="border rounded px-3 py-1">
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                    </select> */}
-
-                    {/* <button className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700">
-                        Tampilkan
-                    </button> */}
-
-                    {/* <button
-                        // onClick={handleExport}
+                <div id="printButton" className="flex items-center gap-3 mb-4">
+                    <button
+                        onClick={handlePrint}
                         className="ml-auto border px-4 py-1 rounded hover:bg-gray-100">
                         Export Laporan
-                    </button> */}
+                    </button>
                 </div>
-                {/* 
+
                 <h3 className="font-medium mb-2">
-                    Absen Bulan : Desember {tahun}
-                </h3> */}
+                    Absen : Ayam Geprek Sa'i Karyawan
+                </h3>
 
                 {/* Tabel */}
                 <div className="overflow-x-auto bg-white shadow rounded-lg">
@@ -190,7 +114,7 @@ const DetailAbsenKasir = () => {
                             {dataAbsen1.map((row, index) => (
                                 <tr
                                     key={index}
-                                    className={"bg-gray-700 text-white"}>
+                                    className={"bg-gray-700 text-red-500"}>
                                     <td className="px-3 py-2 border">
                                         {index + 1}
                                     </td>
@@ -209,6 +133,16 @@ const DetailAbsenKasir = () => {
                             ))}
                         </tbody>
                     </table>
+                    <button
+                        hidden
+                        id="tombolKembali"
+                        onClick={() => navigate("/absensi-setting-spv")}
+                        className="hover:cursor-pointer flex hover:underline">
+                        <svg width="20" height="20" className="rotate-180">
+                            <path d="M10 0 L20 10 L10 20 Z" fill="#000" />
+                        </svg>
+                        Kembali
+                    </button>
                 </div>
             </div>
         </Kasir_Layout>
