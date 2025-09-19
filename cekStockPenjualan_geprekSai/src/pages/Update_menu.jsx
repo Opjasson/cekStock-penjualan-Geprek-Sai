@@ -32,28 +32,7 @@ const Update_menu = () => {
     }, [id]);
 
     const postGambar = async (e) => {
-        try {
-            const file = e.target.files[0];
-
-            if (!file) return;
-            const data = new FormData();
-            data.append("file", file);
-            data.append("upload_preset", "Cloudinary_my_first_time");
-            data.append("cloud_name", "dqcnnluof");
-
-            const res = await fetch(
-                "https://api.cloudinary.com/v1_1/dqcnnluof/image/upload",
-                {
-                    method: "POST",
-                    body: data,
-                }
-            );
-
-            const done = await res.json();
-            setImg(done.url);
-        } catch (error) {
-            console.log(error);
-        }
+        // Setting cloudinary
     };
 
     const handleUpdateMenu = async (e) => {
